@@ -1,40 +1,151 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Modal,
+  FlatList,
+  TouchableHighlight,
+} from "react-native";
 import Header from "@/components/header/header";
+import { styles } from "./novaConta.style";
 
 export default function Index() {
+  const [nome, setNome] = useState("");
+  const [saldoInicial, setSaldoInicial] = useState("");
+  const [chequeEspecial, setChequeEspecial] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const options = [
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
+  ];
+
+  const handleSubmit = () => {
+    console.log("Nome:", nome);
+    console.log("Saldo inicial:", saldoInicial);
+    console.log("Cheque especial:", chequeEspecial);
+    console.log("Categoria:", categoria);
+  };
+
+  const handleSelect = (value: React.SetStateAction<string>) => {
+    setModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
-      <Header /> 
+      <Header />
       <ScrollView style={styles.content}>
-        <Text style={styles.title}>...</Text>
+        <View style={styles.items}>
+          <View style={styles.inputSection}>
+            <TextInput
+              value={nome}
+              onChangeText={setNome}
+              placeholder="Nome"
+              style={[styles.firstInput, styles.input]}
+              placeholderTextColor={"#053D6E69"}
+            />
+            <View style={styles.selectSection}>
+              <View style={styles.iconSection}>
+                <Image
+                  source={require("../../assets/icons/bank.png")}
+                  style={styles.icon}
+                />
+              </View>
+              <View style={styles.dropButtonFather}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(true)}
+                  style={styles.dropButton}
+                >
+                  <Text></Text>
+                  <Image
+                    source={require("../../assets/icons/dropArrow.png")}
+                    style={styles.dropIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <TextInput
+            style={styles.input}
+            value={saldoInicial}
+            onChangeText={setSaldoInicial}
+            placeholder="Saldo inicial"
+            placeholderTextColor={"#053D6E69"}
+            keyboardType="numeric"
+          />
+          <TextInput
+            style={styles.input}
+            value={chequeEspecial}
+            onChangeText={setChequeEspecial}
+            placeholder="Cheque especial"
+            placeholderTextColor={"#053D6E69"}
+          />
+          <View style={styles.inputSection}>
+            <View style={styles.selectSection}>
+              <View style={styles.iconSection}>
+                <Image
+                  source={require("../../assets/icons/bank.png")}
+                  style={styles.icon}
+                />
+              </View>
+              <View style={styles.dropButtonFather}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(true)}
+                  style={styles.dropButton}
+                >
+                  <Text></Text>
+                  <Image
+                    source={require("../../assets/icons/dropArrow.png")}
+                    style={styles.dropIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <TextInput
+              value={categoria}
+              onChangeText={setCategoria}
+              placeholder="Categoria"
+              style={styles.input}
+              placeholderTextColor={"#053D6E69"}
+            />
+          </View>
 
-        <View style={styles.box}>
-          <Text>...</Text>
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.submitButtonText}>Salvar</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
+
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <FlatList
+              data={options}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item }) => (
+                <TouchableHighlight
+                  onPress={() => handleSelect(item.value)}
+                  underlayColor="#ddd"
+                >
+                  <View style={styles.option}>
+                    <Text style={styles.optionText}>{item.label}</Text>
+                  </View>
+                </TouchableHighlight>
+              )}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  content: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  box: {
-    padding: 20,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
-    marginBottom: 20,
-  },
-});

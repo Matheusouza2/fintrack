@@ -22,27 +22,26 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   mainHeader: {
-    height: "90px",
+    height: 90,
     width: "100%",
     padding: 16,
     backgroundColor: "#053D6E",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
     position: "relative",
   },
   backButtonContainer: {
     position: "absolute",
     left: 16,
-    border: "1px solid #0188EA",
+    borderWidth: 1,
+    borderColor: "#0188EA",
     borderRadius: 20,
-    padding: "15px"
+    padding: 15,
   },
   arrowStyle: {
-    width: "28px",
-    height: "25px",
+    width: 30,
+    height: 25,
   },
   headerTitle: {
     fontSize: 30,
