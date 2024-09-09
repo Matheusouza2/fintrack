@@ -1,33 +1,45 @@
 import express from "express";
-import * as TransferController from "./controllers/transferenciasController.js"
+import * as TransferenciasController from "./controllers/transferenciasController.js"
 
 const routes = express.Router();
 routes.use(express.json());
 
 
-// Rotas para transferencia 
+/*
+ Rotas para transferencia
+*/ 
 
-// Listar Transferencias
+/* 
+Endpoint para Listar Transferencias
+*/
 routes.get("/transferencias", async (req, res) => {
 
 });
 
-// Criar transferencias
+/* 
+Endpoint para Criar Transferencias
+*/
 routes.post("/transferencias/create", async (req, res) => {
 
 });
 
-// Atualizar Transferencias
+/* 
+Endpoint para Atualizar Transferencias
+*/
 routes.put("/transferencias/:id", async (req, res) => {
 
 });
 
-// Apagar Transferencias
+/* 
+Endpoint para Apagar Transferencias
+*/
 routes.delete("/transferencias/:id", async (req, res) => {
 
 });
 
-// Mostrar uma transferencia por id
+/* 
+Endpoint para Mostrar uma transferencia por id
+*/
 routes.get("/transferencias/:id", async (req, res) => {
 
 });
