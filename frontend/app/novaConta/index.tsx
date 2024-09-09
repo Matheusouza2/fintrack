@@ -10,7 +10,7 @@ import {
   FlatList,
   TouchableHighlight,
 } from "react-native";
-import Header from "@/components/header/header";
+import Cabecalho from "@/components/cabecalho/cabecalho";
 import { styles } from "./novaConta.style";
 
 export default function Index() {
@@ -18,54 +18,54 @@ export default function Index() {
   const [saldoInicial, setSaldoInicial] = useState("");
   const [chequeEspecial, setChequeEspecial] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
+  const [visibilidadeModal, setVisibilidadeModal] = useState(false);
 
-  const options = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
-    { label: "Option 3", value: "option3" },
+  const opcoes = [
+    { label: "Opção 1", value: "option1" },
+    { label: "Opção 2", value: "option2" },
+    { label: "Opção 3", value: "option3" },
   ];
 
-  const handleSubmit = () => {
+  const handleSalvar = () => {
     console.log("Nome:", nome);
     console.log("Saldo inicial:", saldoInicial);
     console.log("Cheque especial:", chequeEspecial);
     console.log("Categoria:", categoria);
   };
 
-  const handleSelect = (value: React.SetStateAction<string>) => {
-    setModalVisible(false);
+  const handleSelecionar = (value: React.SetStateAction<string>) => {
+    setVisibilidadeModal(false);
   };
 
   return (
     <View style={styles.container}>
-      <Header />
-      <ScrollView style={styles.content}>
-        <View style={styles.items}>
-          <View style={styles.inputSection}>
+      <Cabecalho />
+      <ScrollView style={styles.conteudo}>
+        <View style={styles.itens}>
+          <View style={styles.secaoInput}>
             <TextInput
               value={nome}
               onChangeText={setNome}
               placeholder="Nome"
-              style={[styles.firstInput, styles.input]}
+              style={[styles.primeiroInput, styles.input]}
               placeholderTextColor={"#053D6E69"}
             />
-            <View style={styles.selectSection}>
-              <View style={styles.iconSection}>
+            <View style={styles.secaoSelecionar}>
+              <View style={styles.secaoIcone}>
                 <Image
-                  source={require("../../assets/icons/bank.png")}
-                  style={styles.icon}
+                  source={require("../../assets/icons/banco.png")}
+                  style={styles.icone}
                 />
               </View>
-              <View style={styles.dropButtonFather}>
+              <View style={styles.paiBotaoDropdown}>
                 <TouchableOpacity
-                  onPress={() => setModalVisible(true)}
-                  style={styles.dropButton}
+                  onPress={() => setVisibilidadeModal(true)}
+                  style={styles.botaoDropdown}
                 >
                   <Text></Text>
                   <Image
-                    source={require("../../assets/icons/dropArrow.png")}
-                    style={styles.dropIcon}
+                    source={require("../../assets/icons/iconeMenu.png")}
+                    style={styles.iconeDropdown}
                   />
                 </TouchableOpacity>
               </View>
@@ -86,23 +86,23 @@ export default function Index() {
             placeholder="Cheque especial"
             placeholderTextColor={"#053D6E69"}
           />
-          <View style={styles.inputSection}>
-            <View style={styles.selectSection}>
-              <View style={styles.iconSection}>
+          <View style={styles.secaoInput}>
+            <View style={styles.secaoSelecionar}>
+              <View style={styles.secaoIcone}>
                 <Image
-                  source={require("../../assets/icons/bank.png")}
-                  style={styles.icon}
+                  source={require("../../assets/icons/banco.png")}
+                  style={styles.icone}
                 />
               </View>
-              <View style={styles.dropButtonFather}>
+              <View style={styles.paiBotaoDropdown}>
                 <TouchableOpacity
-                  onPress={() => setModalVisible(true)}
-                  style={styles.dropButton}
+                  onPress={() => setVisibilidadeModal(true)}
+                  style={styles.botaoDropdown}
                 >
                   <Text></Text>
                   <Image
-                    source={require("../../assets/icons/dropArrow.png")}
-                    style={styles.dropIcon}
+                    source={require("../../assets/icons/iconeMenu.png")}
+                    style={styles.iconeDropdown}
                   />
                 </TouchableOpacity>
               </View>
@@ -116,29 +116,29 @@ export default function Index() {
             />
           </View>
 
-          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-            <Text style={styles.submitButtonText}>Salvar</Text>
+          <TouchableOpacity style={styles.botaoEnviar} onPress={handleSalvar}>
+            <Text style={styles.textoBotaoEnviar}>Salvar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
 
       <Modal
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={visibilidadeModal}
+        onRequestClose={() => setVisibilidadeModal(false)}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
+        <View style={styles.containerModal}>
+          <View style={styles.conteudoModal}>
             <FlatList
-              data={options}
+              data={opcoes}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
                 <TouchableHighlight
-                  onPress={() => handleSelect(item.value)}
+                  onPress={() => handleSelecionar(item.value)}
                   underlayColor="#ddd"
                 >
-                  <View style={styles.option}>
-                    <Text style={styles.optionText}>{item.label}</Text>
+                  <View style={styles.opcao}>
+                    <Text style={styles.textoOpcao}>{item.label}</Text>
                   </View>
                 </TouchableHighlight>
               )}

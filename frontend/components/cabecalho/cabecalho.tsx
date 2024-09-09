@@ -1,27 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 
-export default function Header() {
+export default function Cabecalho() {
   return (
-    <View style={styles.mainHeader}>
-      <View style={styles.backButtonContainer}>
+    <View style={styles.cabecalhoPrincipal}>
+      <View style={styles.botaoVoltar}>
         <TouchableOpacity
         >
           <Image
-            source={require("../../assets/icons/arrow.png")}
-            style={styles.arrowStyle}
+            source={require("../../assets/icons/iconeVoltar.png")}
+            style={styles.flecha}
 
           />
         </TouchableOpacity>
       </View>
-      <Text style={styles.headerTitle}>Nova Conta</Text>
+      <Text style={styles.cabecalhoTitulo}>Nova Conta</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  mainHeader: {
+  cabecalhoPrincipal: {
     height: 90,
     width: "100%",
     padding: 16,
@@ -30,8 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     position: "relative",
+    fontFamily: "Roboto"
   },
-  backButtonContainer: {
+  botaoVoltar: {
     position: "absolute",
     left: 16,
     borderWidth: 1,
@@ -39,11 +40,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 15,
   },
-  arrowStyle: {
+  flecha: {
     width: 30,
     height: 25,
   },
-  headerTitle: {
+  cabecalhoTitulo: {
     fontSize: 30,
     color: "#C3C3C3",
     fontFamily: "Roboto, sans",
