@@ -39,8 +39,7 @@ routes.put("/usuarios/:id", (req, res) => {
 
 
 /**********************************************
- Endpoint para excluir a conta de um usuário
- específico.
+ Endpoint para excluir um usuário específico.
  *********************************************/
 routes.delete("/usuarios/:id", (req, res) => {
     // res.send("(DELETE) Endpoint 'api/usuarios/:id' OK");
