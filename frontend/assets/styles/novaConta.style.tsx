@@ -3,13 +3,14 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#EDEDEB",
+    fontFamily: "Roboto, sans",
   },
-  content: {
+  conteudo: {
     flex: 1,
     padding: 16,
   },
-  items: {
+  itens: {
     height: 400,
     width: "100%",
     flexDirection: "column",
@@ -17,12 +18,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
-  title: {
+  titulo: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
   },
-  box: {
+  caixa: {
     padding: 20,
     backgroundColor: "#f0f0f0",
     borderRadius: 8,
@@ -36,14 +37,15 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     fontSize: 20,
+    fontWeight: 400,
   },
-  inputSection: {
+  secaoInput: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  submitButton: {
+  botaoEnviar: {
     marginTop: 50,
     backgroundColor: "#00DFA3",
     width: 174,
@@ -52,23 +54,23 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  submitButtonText: {
+  textoBotaoEnviar: {
     color: "#EDEDEB",
     fontSize: 20,
   },
-  selectSection: {
+  secaoSelecionar: {
     flexDirection: "row",
     marginRight: 5,
   },
-  icon: {
+  icone: {
     width: 36,
     height: 36,
   },
-  dropIcon: {
+  iconeDropdown: {
     width: 14,
     height: 8,
   },
-  iconSection: {
+  secaoIcone: {
     backgroundColor: "#D9D9D9",
     width: 61,
     height: 61,
@@ -76,11 +78,11 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  dropButtonFather: {
+  paiBotaoDropdown: {
     justifyContent: "center",
     alignItems: "center",
   },
-  dropButton: {
+  botaoDropdown: {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#D9D9D9",
@@ -98,28 +100,28 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: 20,
   },
-  modalContainer: {
+  containerModal: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
   },
-  modalContent: {
+  conteudoModal: {
     width: 300,
     backgroundColor: "white",
     borderRadius: 5,
     overflow: "hidden",
   },
-  option: {
+  opcao: {
     padding: 15,
   },
-  optionText: {
+  textoOpcao: {
     fontSize: 16,
   },
-  firstInput: {
+  primeiroInput: {
     marginRight: 21,
   },
-  mainHeader: {
+  cabecalhoPrincipal: {
     height: 90,
     width: "100%",
     padding: 16,
@@ -128,8 +130,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     position: "relative",
+    fontFamily: "Roboto",
   },
-  backButtonContainer: {
+  botaoVoltar: {
     position: "absolute",
     left: 16,
     borderWidth: 1,
@@ -137,11 +140,11 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 15,
   },
-  arrowStyle: {
+  flecha: {
     width: 30,
     height: 25,
   },
-  headerTitle: {
+  cabecalhoTitulo: {
     fontSize: 30,
     color: "#C3C3C3",
     fontFamily: "Roboto, sans",
