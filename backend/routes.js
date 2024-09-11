@@ -1,5 +1,6 @@
 import express from "express";
 const routes = express.Router();
+routes.use(express.json());
 import * as transacoesController from "./controllers/transacoesController.js";
 
 //rotas dos controlers e trasacoes dos usuarios
