@@ -1,7 +1,0 @@
-
-HELLO WORLD
-DEVELOP
-SEGUNDO CONFLICT
-
-HELLO WORLD - ALteração direta no servidor do github
-
