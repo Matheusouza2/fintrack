@@ -10,8 +10,7 @@ import {
   FlatList,
   TouchableHighlight,
 } from "react-native";
-import Header from "@/components/header/header";
-import { styles } from "./novaConta.style";
+import { styles } from "../../assets/styles/novaConta.style";
 
 export default function Index() {
   const [nome, setNome] = useState("");
@@ -39,7 +38,17 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Header />
+      <View style={styles.mainHeader}>
+        <View style={styles.backButtonContainer}>
+          <TouchableOpacity>
+            <Image
+              source={require("../../assets/icons/arrow.png")}
+              style={styles.arrowStyle}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.headerTitle}>Nova Conta</Text>
+      </View>
       <ScrollView style={styles.content}>
         <View style={styles.items}>
           <View style={styles.inputSection}>

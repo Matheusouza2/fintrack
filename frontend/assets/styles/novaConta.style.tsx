@@ -119,4 +119,31 @@ export const styles = StyleSheet.create({
   firstInput: {
     marginRight: 21,
   },
+  mainHeader: {
+    height: 90,
+    width: "100%",
+    padding: 16,
+    backgroundColor: "#053D6E",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    position: "relative",
+  },
+  backButtonContainer: {
+    position: "absolute",
+    left: 16,
+    borderWidth: 1,
+    borderColor: "#0188EA",
+    borderRadius: 20,
+    padding: 15,
+  },
+  arrowStyle: {
+    width: 30,
+    height: 25,
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "#C3C3C3",
+    fontFamily: "Roboto, sans",
+  },
 });
