@@ -1,18 +1,12 @@
 import express from "express";
 const routes = express.Router();
-import {listarTransacoesPorUsuario,
-    mostrarTransacaoPorUsuario,
-    cadastrarTransacaoPorUsuario,
-    alterarTransacaoPorUsuario,
-    excluirTransacaoPorUsuario} from "../backend/controllers/controler_transacoes.js";
+import * as transacoesController from "./controllers/transacoesController.js";
 
 //rotas dos controlers e trasacoes dos usuarios
-routes.get("/transacoes", listarTransacoesPorUsuario);
-routes.get("/transacoes/:id", mostrarTransacaoPorUsuario);
-routes.post("/transacoes", cadastrarTransacaoPorUsuario);
-routes.put("/transacoes/:id", alterarTransacaoPorUsuario);
-routes.delete("/transacoes/:id", excluirTransacaoPorUsuario);
-
-
+routes.get("/transacoes", transacoesController.listarTransacoesPorUsuario);
+routes.get("/transacoes/:id", transacoesController.mostrarTransacaoPorUsuario);
+routes.post("/transacoes", transacoesController.cadastrarTransacaoPorUsuario);
+routes.put("/transacoes/:id", transacoesController.alterarTransacaoPorUsuario);
+routes.delete("/transacoes/:id", transacoesController.excluirTransacaoPorUsuario);
 
 export default routes;
