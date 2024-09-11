@@ -1,5 +1,5 @@
 import { Text, View, Image } from "react-native";
-import { styles } from "./splashScreen.style";
+import { styles } from "../../assets/styles/splashScreen.style";
 
 export default function Index() {
   return (
