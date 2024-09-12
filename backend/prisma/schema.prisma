@@ -12,3 +12,20 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+<<<<<<< HEAD
+=======
+
+model Transacao {
+  id          Int      @id @default(autoincrement())
+  valor      Float
+  tipo        TipoTransacao
+  descricao String? 
+  createdAt   DateTime @default(now())
+}
+
+// Enum para tipo de transação
+enum TipoTransacao {
+  CREDITO
+  DEBITO
+}
+>>>>>>> develop
