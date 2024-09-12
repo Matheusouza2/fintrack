@@ -3,36 +3,36 @@
 /**
  * lista todas as trasacoes de um usuario.
  */
-function listarTransacoesPorUsuario(req, res) {}
+export const listarTransacoesPorUsuario = (req, res) => {}
 
 
 /**
  * mostra uma transacao especifica de um usuario com base no id
  */
-function mostrarTransacaoPorUsuario(req, res) {}
+export const mostrarTransacaoPorUsuario = (req, res) => {}
 
 
 /**
  * caastra uma nova transacao para um usuario especifico com base no id
  */
-function cadastrarTransacaoPorUsuario(req, res) {}
+export const cadastrarTransacaoPorUsuario = (req, res) => {}
 
 
 /**
  * faz alteracoes nas transacoes de um usuario com base no id
  */
-function alterarTransacaoPorUsuario(req, res) {}
+export const alterarTransacaoPorUsuario = (req, res) => {}
 
 
 /*
  * exclui uma transacao de um usuario com base no id
  */
-function excluirTransacaoPorUsuario(req, res) {}
+export const excluirTransacaoPorUsuario = (req, res) => {}
 
-module.exports = {
-    listarTransacoesPorUsuario,
-    mostrarTransacaoPorUsuario,
-    cadastrarTransacaoPorUsuario,
-    alterarTransacaoPorUsuario,
-    excluirTransacaoPorUsuario,
-};
+// module.exports = {
+//     listarTransacoesPorUsuario,
+//     mostrarTransacaoPorUsuario,
+//     cadastrarTransacaoPorUsuario,
+//     alterarTransacaoPorUsuario,
+//     excluirTransacaoPorUsuario,
+// };
