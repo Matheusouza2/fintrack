@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.19.1",
     "express": "^4.19.2",
     "nodemon": "^3.1.4"
   },
