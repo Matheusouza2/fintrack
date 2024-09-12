@@ -12,8 +12,16 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-<<<<<<< HEAD
-=======
+// ----------------------------------
+
+
+model Usuario {
+  id            Int     @id @default(autoincrement())
+  nomeCompleto  String
+  email         String  @unique
+  cpf           String  @unique
+  senha         String
+}
 
 model Transacao {
   id          Int      @id @default(autoincrement())
@@ -28,4 +36,3 @@ enum TipoTransacao {
   CREDITO
   DEBITO
 }
->>>>>>> develop
