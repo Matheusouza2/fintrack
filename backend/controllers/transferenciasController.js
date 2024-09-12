@@ -1,4 +1,4 @@
-import transferencias from "../models/transferencias.js";
+import {transferencias} from "../models/transferencias.js"
 
 /* 
 Controllers para as transferencias 
