@@ -10,7 +10,7 @@ export default function App() {
         <KeyboardAvoidingView style={styles.container}>
             
             {/* logo */}
-            <Image source={require('../../assets/images/logo.png')}
+            <Image source={require('../../assets/icons/logo.png')}
             style={styles.logo}/> 
 
             {/* input do cpf */}
