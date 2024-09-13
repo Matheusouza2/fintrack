@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View} from "react-native";
-import { styles } from "../assets/styles/login";
-import { Redirect } from "expo-router";
+import { styles } from "../../assets/styles/login";
 
 export default function App() {
     // texto padrão improtado como constante
@@ -12,7 +10,7 @@ export default function App() {
         <KeyboardAvoidingView style={styles.container}>
             
             {/* logo */}
-            <Image source={require('../assets/images/logo.png')}
+            <Image source={require('../../assets/images/logo.png')}
             style={styles.logo}/> 
 
             {/* input do cpf */}
@@ -38,7 +36,6 @@ export default function App() {
 
             {/* botão de login */}
             <TouchableOpacity style={styles.button}> 
-                {/* onPress={submit} */}
                 <Text style={{...texto, color: '#fff'}}>Entrar</Text>
             </TouchableOpacity>
 
