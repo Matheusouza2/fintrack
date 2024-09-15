@@ -36,12 +36,12 @@ enum TipoTransacao {
   CREDITO
   DEBITO
 }
-
+//correçao nos tipos
 model Contas {
   id                   Int       @id @default(autoincrement())
   agencia              String
   conta                String
-  banco                Banco
-  saldoInicial         Double
-  valorChequeEspecial  Double
+  banco                String
+  saldoInicial         Float
+  valorChequeEspecial  Float
 }
