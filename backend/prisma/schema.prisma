@@ -12,23 +12,23 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
 // ----------------------------------
 
-
 model Usuario {
-  id            Int     @id @default(autoincrement())
-  nomeCompleto  String
-  email         String  @unique
-  cpf           String  @unique
-  senha         String
+  id           Int    @id @default(autoincrement())
+  nomeCompleto String
+  email        String @unique
+  cpf          String @unique
+  senha        String
 }
 
 model Transacao {
-  id          Int      @id @default(autoincrement())
-  valor      Float
-  tipo        TipoTransacao
-  descricao String? 
-  createdAt   DateTime @default(now())
+  id        Int           @id @default(autoincrement())
+  valor     Float
+  tipo      TipoTransacao
+  descricao String?
+  createdAt DateTime      @default(now())
 }
 
 // Enum para tipo de transação
@@ -36,12 +36,26 @@ enum TipoTransacao {
   CREDITO
   DEBITO
 }
-//correçao nos tipos
+
+model Bancos {
+  id              Int      @id @default(autoincrement())
+  codigo          String   @unique
+  cnpj            String   @unique
+  nome            String   @unique
+  nome_curto      String   @unique
+  icone           String   @unique
+  primary_color   String   @unique
+  secondary_color String   @unique
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  Contas          Contas[]
+}
+
 model Contas {
-  id                   Int       @id @default(autoincrement())
-  agencia              String
-  conta                String
-  banco                String
-  saldoInicial         Float
-  valorChequeEspecial  Float
+  id                  Int    @id @default(autoincrement())
+  agencia             String
+  conta               String
+  bancos              Bancos @relation(fields: [banco_id], references: [id])
+  banco_id            Int
+  saldoInicial        Float
+  valorChequeEspecial Float
 }
