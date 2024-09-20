@@ -1,4 +1,7 @@
-import { Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Text, TouchableOpacity, View } from "react-native";
+
+import DespesasPorCategoria from "./despesasPorCategoria/DespesasPorCategoria"
 
 export default function Index() {
   return (
@@ -7,9 +10,13 @@ export default function Index() {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor:"#EDEDEB",
+        paddingHorizontal:10
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <DespesasPorCategoria/>
+      <Link href="/splashScreen">Splash</Link>
+      <Link href="/novaConta">Nova Conta</Link>
     </View>
   );
 }
