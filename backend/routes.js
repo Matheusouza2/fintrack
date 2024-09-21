@@ -16,4 +16,5 @@ routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
 
+routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 export default routes;
