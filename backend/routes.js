@@ -1,20 +1,19 @@
 import express from "express";
-import *as usuarioController from "./controller_usuario";
+import * as usuarioController from "./controllers/controladorUsuarios.js";
+import * as contasController from "./controllers/contasController.js";
 
 const routes = express.Router();
 
 /* Em routes criei as rotas nas quais as funções irão pecorrer   */
 
-routes.post('/contas', usuarioController.cadastrar_contas);
+routes.post("/contas", contasController.cadastrarConta);
 
-routes.put('/contas', usuarioController.alterar_contas);
+routes.put("/contas", contasController.alterarContas);
 
-routes.get('/contas', usuarioController.listar_contas);
+routes.get("/contas", contasController.listarContas);
 
-routes.delete('/contas/:id',usuarioController.excluir_contas);
+routes.delete("/contas/:id", contasController.excluirContas);
 
-routes.get('/contas/:id', usuarioController.mostrar_contas);
-
+routes.get("/contas/:id", contasController.mostrarContas);
 
 export default routes;
-
