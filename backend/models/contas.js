@@ -6,7 +6,7 @@ const db = new PrismaClient();
 export const CriarConta = async (dadosUsuario) => {
     try {
       //adiciona os dados no banco
-    const novaConta = await db.Contas.create({
+    const novaConta = await db.contas.create({
       data: dadosUsuario,
     });
     return novaConta;
@@ -28,6 +28,6 @@ export const ListarContaPorId = async(ContaId) => {
   })
   return listarConta;
 }catch (error) {
-    
+  throw new Error(`Erro ao visualizar conta: ${error.message}`);
 }
 }
