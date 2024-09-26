@@ -21,4 +21,13 @@ export const AtualizarConta = (ContaId, Alteracoes) => {}
 
 export const DeletarContas = (ContaId) => {}
 
-export const ListarContaPorId = (ContaId) => {}
+export const ListarContaPorId = async(ContaId) => {
+  try {
+    const listarConta = await db.Contas.findOne({
+      id: ContaId,
+  })
+  return listarConta;
+}catch (error) {
+  throw new Error(`Erro ao visualizar conta: ${error.message}`);
+}
+}
