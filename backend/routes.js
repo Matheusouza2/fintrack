@@ -10,6 +10,8 @@ const routes = express.Router();
 // Endpoints referentes ao controller de contas
 routes.post("/contas", contasController.cadastrarConta);
 
+routes.get('/contas/id', contasController.mostrarContas);
+
 routes.put("/contas", contasController.alterarContas);
 
 routes.get("/contas", contasController.listarContas);
@@ -17,8 +19,6 @@ routes.get("/contas", contasController.listarContas);
 routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
-
-
 
 // Endpoints referentes ao controller de categorias
 routes.post("/categorias", categoriasController.cadastrarCategoria);
@@ -31,5 +31,6 @@ routes.get("/categorias", categoriasController.listarCategorias);
 
 routes.get("/categorias/:id", categoriasController.obterCategoria);
 
+routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
 export default routes;
