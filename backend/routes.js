@@ -8,6 +8,8 @@ const routes = express.Router();
 
 routes.post("/contas", contasController.cadastrarConta);
 
+routes.get('/contas/id', contasController.mostrarContas);
+
 routes.put("/contas", contasController.alterarContas);
 
 routes.get("/contas", contasController.listarContas);
