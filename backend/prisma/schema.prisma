@@ -59,3 +59,9 @@ model Contas {
   saldoInicial        Float
   valorChequeEspecial Float
 }
+
+model Subcategoria {
+  descricao           String
+  icone               String
+  categoria           Categoria
+}
