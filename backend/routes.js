@@ -1,7 +1,7 @@
 import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
-import * as subcategoriaController from "../controllers/subcategoriaController.js";
+import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
 
 
@@ -19,7 +19,7 @@ routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
 
-// criação de rotas das subcategorias
+// criação de rotas da subcategoria
 
 routes.post("/subcategoria", subcategoriaController.criarSubcategoria);
 
