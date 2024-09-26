@@ -5,13 +5,13 @@ import { CriarConta, ListarContaPorId } from "../models/contas.js";
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
-  const { agencia, conta, banco, saldoInicial, valorChequeEspecial } = req.body;
+  const { agencia, conta, banco_id, saldoInicial, valorChequeEspecial } = req.body;
 
   // validação
   if (
     !agencia ||
     !conta ||
-    !banco ||
+    !banco_id ||
     saldoInicial === undefined ||
     valorChequeEspecial === undefined
   ) {
@@ -27,7 +27,7 @@ export async function cadastrarConta(req, res) {
     const dadosConta = {
       agencia,
       conta,
-      banco,
+      banco_id,
       saldoInicial,
       valorChequeEspecial,
     };
