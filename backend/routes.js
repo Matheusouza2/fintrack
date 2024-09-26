@@ -2,7 +2,7 @@ import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
 import * as subcategoriaController from "../controllers/subcategoriaController.js";
-
+import * as categoriasController from "./controllers/categoriasController.js";
 
 
 const routes = express.Router();
