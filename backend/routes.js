@@ -21,12 +21,12 @@ routes.get("/contas/:id", contasController.mostrarContas);
 
 // criação de rotas das subcategorias
 
-routes.post("/subcategoria.controller", subcategoriaController.criarSubcategoria);
+routes.post("/subcategoria", subcategoriaController.criarSubcategoria);
 
-routes.get("/subcategoria.controller", subcategoriaController.verSubcategoria);
+routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
 
-routes.post("/subcategoria.controller", subcategoriaController.atualizarSubcategoria);
+routes.post("/subcategoria", subcategoriaController.atualizarSubcategoria);
 
-routes.delete("/subcategoria.controller", subcategoriaController.apagarSubcategoria);
+routes.delete("/subcategoria/:id", subcategoriaController.apagarSubcategoria);
 
 export default routes;
