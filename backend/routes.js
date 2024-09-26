@@ -2,6 +2,7 @@ import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
+import * as cartaoController from "./controllers/cartaoController.js"
 
 
 const routes = express.Router();
@@ -32,5 +33,19 @@ routes.get("/categorias", categoriasController.listarCategorias);
 routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
+
+//Endpoints referentes ao controller de cartão de crédito
+routes.post("/credito", cartaoController.criarCredito);
+
+routes.get("/credito/:id", cartaoController.lerCredito);
+
+routes.delete("/credito/:id", cartaoController.deletarCredito);
+
+routes.put("/credito/:id", cartaoController.atualizarCredito);
+
+routes.get("/credito/:id",cartaoController.buscarID);
+
+
+
 
 export default routes;
