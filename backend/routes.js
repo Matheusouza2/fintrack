@@ -1,6 +1,9 @@
 import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
+import * as subcategoriaController from "../controllers/subcategoriaController.js";
+
+
 
 const routes = express.Router();
 
@@ -15,5 +18,15 @@ routes.get("/contas", contasController.listarContas);
 routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
+
+// criação de rotas das subcategorias
+
+routes.post("/subcategoria.controller", subcategoriaController.criarSubcategoria);
+
+routes.get("/subcategoria.controller", subcategoriaController.verSubcategoria);
+
+routes.post("/subcategoria.controller", subcategoriaController.atualizarSubcategoria);
+
+routes.delete("/subcategoria.controller", subcategoriaController.apagarSubcategoria);
 
 export default routes;

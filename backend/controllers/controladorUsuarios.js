@@ -52,7 +52,7 @@ export function cadastrarUsuario(request, response) {
       }
       return response.status(500).json({ message: "Erro ao atualizar usuário", error });
     }
-  }
+  
   
 
 
