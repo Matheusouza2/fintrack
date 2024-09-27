@@ -12,29 +12,42 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
 // ----------------------------------
 
-
 model Usuario {
-  id            Int     @id @default(autoincrement())
-  nomeCompleto  String
-  email         String  @unique
-  cpf           String  @unique
-  senha         String
+  id           Int    @id @default(autoincrement())
+  nomeCompleto String
+  email        String @unique
+  cpf          String @unique
+  senha        String
 }
 
 model Transacao {
-  id          Int      @id @default(autoincrement())
-  valor      Float
-  tipo        TipoTransacao
-  descricao String? 
-  createdAt   DateTime @default(now())
+  id        Int           @id @default(autoincrement())
+  valor     Float
+  tipo      TipoTransacao
+  descricao String?
+  createdAt DateTime      @default(now())
 }
 
 // Enum para tipo de transação
 enum TipoTransacao {
   CREDITO
   DEBITO
+}
+
+model Bancos {
+  id              Int      @id @default(autoincrement())
+  codigo          String   @unique
+  cnpj            String   @unique
+  nome            String   @unique
+  nome_curto      String   @unique
+  icone           String   @unique
+  primary_color   String   @unique
+  secondary_color String   @unique
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  Contas          Contas[]
 }
 
 model Contas {
@@ -54,4 +67,10 @@ model CartaoDeCredito {
   codigoSeguranca String
   limiteCredito   Float
   saldoDisponivel Float
+}
+
+model Subcategoria {
+  descricao           String
+  icone               String
+  categoria           Categoria
 }

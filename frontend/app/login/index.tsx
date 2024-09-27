@@ -1,5 +1,6 @@
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View} from "react-native";
 import { styles } from "../../assets/styles/login";
+import React from "react";
 
 export default function App() {
     // texto padrão improtado como constante
