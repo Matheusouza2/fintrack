@@ -60,8 +60,20 @@ model Contas {
   valorChequeEspecial Float
 }
 
+model Categoria {
+  id                  Int            @id @default(autoincrement())
+  nome                String
+  descricao           String?
+  tipo                String
+  cor                 String
+  icone               String
+  subcategorias       Subcategoria[] 
+}
+
 model Subcategoria {
+  id                  Int            @id @default(autoincrement())
   descricao           String
   icone               String
-  categoria           Categoria
+  categoriaId         Int
+  categoria           Categoria      @relation(fields: [categoriaId], references: [id])
 }
