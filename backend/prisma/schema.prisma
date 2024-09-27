@@ -14,34 +14,13 @@ datasource db {
 }
 // ----------------------------------
 
-
-model Usuario {
-  id            Int     @id @default(autoincrement())
-  nomeCompleto  String
-  email         String  @unique
-  cpf           String  @unique
-  senha         String
+model CartaoDeCredito {
+  id              Int     @id @default(autoincrement())
+  numero          String  @unique
+  nomeTitular     String
+  dataValidade    DateTime
+  codigoSeguranca String
+  limiteCredito   Float
+  saldoDisponivel Float
 }
 
-model Transacao {
-  id          Int      @id @default(autoincrement())
-  valor      Float
-  tipo        TipoTransacao
-  descricao String? 
-  createdAt   DateTime @default(now())
-}
-
-// Enum para tipo de transação
-enum TipoTransacao {
-  CREDITO
-  DEBITO
-}
-
-model Contas {
-  id                   Int       @id @default(autoincrement())
-  agencia              String
-  conta                String
-  banco                Banco
-  saldoInicial         Double
-  valorChequeEspecial  Double
-}
