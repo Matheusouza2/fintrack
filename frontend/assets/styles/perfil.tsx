@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
     // estilo do input de texto
     input: {
         width: "80%",
+        backgroundColor: "#fff",
         height: width * 0.1,
         marginBottom: 30,
         color: "#333",
