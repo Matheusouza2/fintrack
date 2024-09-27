@@ -1,3 +1,5 @@
+/* Nesta parte estar as funções de CRUD para controller de cartão de crédito                         */
+
 export function criarCredito(req, res){
     
 }
