@@ -65,3 +65,18 @@ model Subcategoria {
   icone               String
   categoria           Categoria
 }
+
+model ObjetivoFinanceiro {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  valorObjetivo Float
+  valorAtual    Float    @default(0)
+  dataAlvo     DateTime
+  status       Status    @default(PENDENTE)
+}
+
+enum Status {
+  PENDENTE
+  ALCANCADO
+  FALHOU
+}
