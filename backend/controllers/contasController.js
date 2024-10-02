@@ -1,7 +1,7 @@
 /* Essa classe serve para adicionar os controller de contas que deve conter os métodos de cadastrar, 
 alterar, listar, excluir e mostrar uma única conta com base no id      */
 
-import { CriarConta, ListarContaPorId } from "../models/contas.js";
+import { CriarConta, ListarContaPorId, AtualizarConta } from "../models/contas.js";
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
@@ -38,8 +38,21 @@ export async function cadastrarConta(req, res) {
   }
 }
 
+export async function alterarContas(req, res) {
+  const contaId = req.params.id
 
-export function alterarContas(req, res) {}
+  const data = req.body
+
+  try {
+    const updatedConta = await AtualizarConta(contaId, data)
+
+    if (!updatedConta) res.status(404).json({ message: `Conta não encontrada` })
+
+    return res.status(200).json(updatedConta)
+  } catch (err) {
+    res.status(500).json({ message: `Erro interno do servidor` })
+  }
+}
 
 export function listarContas(req, res) {}
 

@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 const db = new PrismaClient();
 
-
 export const CriarConta = async (dadosUsuario) => {
     try {
       //adiciona os dados no banco
@@ -17,7 +16,18 @@ export const CriarConta = async (dadosUsuario) => {
 
 export const VerConta = (UsuarioId) => {}
 
-export const AtualizarConta = (ContaId, Alteracoes) => {}
+export const AtualizarConta = async (id, data) => {
+  try {
+    const account = await db.contas.update({
+      where: { id },
+      data,
+    })
+
+    return account
+  } catch (err) {
+    throw new Error(`Erro ao atualizar conta: ${error.message}`);
+  }
+}
 
 export const DeletarContas = (ContaId) => {}
 
