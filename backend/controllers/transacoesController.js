@@ -1,7 +1,7 @@
 //controller de transacoes do usuario cadastrar, alterar, listar, excluir e mostrar(com base nos id)
 
 /**
- * lista todas as trasacoes de um usuario.
+ * lista todas as transacoes de um usuario.
  */
 export const listarTransacoesPorUsuario = (req, res) => {}
 
@@ -13,7 +13,7 @@ export const mostrarTransacaoPorUsuario = (req, res) => {}
 
 
 /**
- * caastra uma nova transacao para um usuario especifico com base no id
+ * cadastra uma nova transacao para um usuario especifico com base no id
  */
 export const cadastrarTransacaoPorUsuario = (req, res) => {}
 

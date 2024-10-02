@@ -23,7 +23,14 @@ async function listaDeUsuarios() {
 Usa o método findUnique do Prisma para encontrar um usuário pelo ID
 */
 async function obterUsuarioPorId(id) {
-  return await prisma.user.findUnique({ where: { id: Number(id) } });
+  try {
+    const usuario = await prisma.usuario.findUnique({
+      where: { id: parseInt(id) }, // Certifique-se de que o ID seja do tipo correto
+    });
+    return usuario; // Retorna o objeto do usuário ou null se não for encontrado
+  } catch (error) {
+    throw new Error("Erro ao buscar o usuário");
+  }
 }
 
 /* Função assíncrona para atualizar um usuário pelo ID
