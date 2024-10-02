@@ -58,6 +58,19 @@ model Contas {
   banco_id            Int
   saldoInicial        Float
   valorChequeEspecial Float
+  transferenciasRemetente     Transferencias[] @relation("ContaRemetente")
+  transferenciasDestinatario     Transferencias[] @relation("ContaDestinatario")
+
+}
+
+model Transferencias {
+  id                     Int     @id @default(autoincrement())
+  id_conta_remetente     Int
+  id_conta_destinatario  Int
+  conta                  Contas  @relation("ContaRemetente",fields: [id_conta_remetente], references: [id])
+  conta_2                Contas  @relation("ContaDestinatario",fields: [id_conta_destinatario], references: [id])
+
+  valor                  Float
 }
 
 model Subcategoria {
