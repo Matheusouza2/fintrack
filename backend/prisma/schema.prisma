@@ -51,13 +51,32 @@ model Bancos {
 }
 
 model Contas {
-  id                  Int    @id @default(autoincrement())
-  agencia             String
-  conta               String
-  bancos              Bancos @relation(fields: [banco_id], references: [id])
-  banco_id            Int
-  saldoInicial        Float
-  valorChequeEspecial Float
+  id                   Int       @id @default(autoincrement())
+  agencia              String
+  conta                String
+  banco                Banco
+  saldoInicial         Double
+  valorChequeEspecial  Double
+}
+
+model CartaoDeCredito {
+  id              Int     @id @default(autoincrement())
+  numero          String  @unique
+  nomeTitular     String
+  dataValidade    DateTime
+  codigoSeguranca String
+  limiteCredito   Float
+  saldoDisponivel Float
+}
+
+model Transferencias {
+  id                     Int     @id @default(autoincrement())
+  id_conta_remetente     Int
+  id_conta_destinatario  Int
+  conta                  Contas  @relation("ContaRemetente",fields: [id_conta_remetente], references: [id])
+  conta_2                Contas  @relation("ContaDestinatario",fields: [id_conta_destinatario], references: [id])
+
+  valor                  Float
 }
 
 model Categoria {

@@ -1,17 +1,16 @@
 import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
+import { loginUsuario } from "./controllers/loginController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
 
-
 const routes = express.Router();
-
 
 // Endpoints referentes ao controller de contas
 routes.post("/contas", contasController.cadastrarConta);
 
-routes.get('/contas/id', contasController.mostrarContas);
+routes.get("/contas/id", contasController.mostrarContas);
 
 routes.put("/contas", contasController.alterarContas);
 
@@ -20,6 +19,8 @@ routes.get("/contas", contasController.listarContas);
 routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
+
+routes.post("/login", loginUsuario);
 
 // criação de rotas da subcategoria
 
