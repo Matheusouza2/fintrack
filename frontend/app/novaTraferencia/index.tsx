@@ -34,8 +34,8 @@ const novaTraferencia = () => {
     }
 
     dados.valor = parseFloat(dados.valor.replace("R$","").replace(",","."))
-    
-    post("/transferencia", dados)
+    if ( dados.contaDestino && dados.contaOrigem && dados.descricao && dados.data && dados.tipoTransferencia && dados.valor)
+      post("/transferencia", dados)
   }
   //retorna a view e coloca o valor inicial como 0 e exibe o texto de nova transferência
   return (
