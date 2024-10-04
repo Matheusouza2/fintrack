@@ -1,3 +1,4 @@
+//essa parte é uma componente de telas onde é um menu de navegação
 import React from 'react';
 import { View, Text, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles as cardStyles } from '../assets/styles/card'; 
