@@ -5,6 +5,8 @@ import { loginUsuario } from "./controllers/loginController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
 import * as transferenciasController from "./controllers/transferenciasController.js"
+import * as cartaoController from "./controllers/cartaoController.js"
+
 const routes = express.Router();
 
 routes.get("/ping", (req,res) => { return res.send("Pong!")})
@@ -46,5 +48,63 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
+<<<<<<< HEAD
 routes.post("/transferencia", transferenciasController.CriarTransferencia)
+=======
+<<<<<<< HEAD
+/*
+ Rotas para transferencia
+*/ 
+
+/* 
+Endpoint para Listar Transferencias
+*/
+routes.get("/transferencias", async (req, res) => {
+
+});
+
+/* 
+Endpoint para Criar Transferencias
+*/
+routes.post("/transferencias/create", async (req, res) => {
+
+});
+
+/* 
+Endpoint para Atualizar Transferencias
+*/
+routes.put("/transferencias/:id", async (req, res) => {
+
+});
+
+/* 
+Endpoint para Apagar Transferencias
+*/
+routes.delete("/transferencias/:id", async (req, res) => {
+
+});
+
+/* 
+Endpoint para Mostrar uma transferencia por id
+*/
+routes.get("/transferencias/:id", async (req, res) => {
+
+});
+=======
+//Endpoints referentes ao controller de cartão de crédito
+routes.post("/credito", cartaoController.criarCredito);
+
+routes.get("/credito/:id", cartaoController.lerCredito);
+
+routes.delete("/credito/:id", cartaoController.deletarCredito);
+
+routes.put("/credito/:id", cartaoController.atualizarCredito);
+
+routes.get("/credito/:id",cartaoController.buscarID);
+
+
+
+>>>>>>> 26b144454e7f5af40e37c220f1b285d49f340f1a
+
+>>>>>>> 7b2d085f064cfd9f76672d130c28fe65f9f29a95
 export default routes;
