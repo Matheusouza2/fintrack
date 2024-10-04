@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: '127.0.0.0:9090/api/',
+    baseURL: 'http://localhost:9090/api/',
     timeout: 1000,
     headers: {
         'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ const instance = axios.create({
 
 export const post = async (endpoint, body) => {
     try {
-        const response = await instance.post('/transferencia', {});
+        const response = await instance.post(endpoint, body);
         console.log(response)
       } catch (err) {
         console.error(err);
