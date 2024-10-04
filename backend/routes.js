@@ -4,9 +4,10 @@ import * as contasController from "./controllers/contasController.js";
 import { loginUsuario } from "./controllers/loginController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
-
+import * as transferenciasController from "./controllers/transferenciasController.js"
 const routes = express.Router();
 
+routes.get("/ping", (req,res) => { return res.send("Pong!")})
 // Endpoints referentes ao controller de contas
 routes.post("/contas", contasController.cadastrarConta);
 
@@ -26,7 +27,7 @@ routes.post("/login", loginUsuario);
 
 routes.post("/subcategoria", subcategoriaController.criarSubcategoria);
 
-routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
+// routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
 
 routes.post("/subcategoria", subcategoriaController.atualizarSubcategoria);
 
@@ -45,4 +46,5 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
+routes.post("/transferencia", transferenciasController.CriarTransferencia)
 export default routes;

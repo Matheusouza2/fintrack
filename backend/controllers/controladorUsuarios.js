@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import * as usuarioModel from "../model/usuario.js";
+// import * as usuarioModel from "../model/usuario.js";
 
 const prisma = new PrismaClient();
 

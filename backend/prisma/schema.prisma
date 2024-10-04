@@ -54,9 +54,12 @@ model Contas {
   id                   Int       @id @default(autoincrement())
   agencia              String
   conta                String
-  banco                Banco
-  saldoInicial         Double
-  valorChequeEspecial  Double
+  banco                Int
+  saldoInicial         Float   
+  valorChequeEspecial  Float 
+  conta_banco          Bancos  @relation(fields: [banco], references: [id])  
+  transferenciasRemetente     Transferencias[] @relation("ContaRemetente")
+  transferenciasDestinatario  Transferencias[] @relation("ContaDestinatario")
 }
 
 model CartaoDeCredito {
@@ -69,15 +72,15 @@ model CartaoDeCredito {
   saldoDisponivel Float
 }
 
-model Transferencias {
-  id                     Int     @id @default(autoincrement())
-  id_conta_remetente     Int
-  id_conta_destinatario  Int
-  conta                  Contas  @relation("ContaRemetente",fields: [id_conta_remetente], references: [id])
-  conta_2                Contas  @relation("ContaDestinatario",fields: [id_conta_destinatario], references: [id])
+  model Transferencias {
+    id                     Int     @id @default(autoincrement())
+    id_conta_remetente     Int
+    id_conta_destinatario  Int
+    conta                  Contas  @relation("ContaRemetente",fields: [id_conta_remetente], references: [id])
+    conta_2                Contas  @relation("ContaDestinatario",fields: [id_conta_destinatario], references: [id])
 
-  valor                  Float
-}
+    valor                  Float
+  }
 
 model Categoria {
   id                  Int            @id @default(autoincrement())

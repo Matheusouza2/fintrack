@@ -21,7 +21,7 @@
     "nodemon": "^3.1.4"
   },
   "devDependencies": {
-    "prisma": "^5.20.0"
+    "prisma": "^5.20.0",
     "@babel/preset-env": "^7.25.4",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",

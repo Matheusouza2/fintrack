@@ -1,25 +1,55 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-
+import { post } from "../../services/axios"
 
 //componente funcional novaTransacao e seta useState para criar a descrição, data, tipo de Transferência, conta de Origem e conta de Destino
-const novaTransacao = () => {
+const novaTraferencia = () => {
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState('');
   const [tipoTransferencia, setTipoTransferencia] = useState('Não recorrente');
   const [contaOrigem, setContaOrigem] = useState('');
   const [contaDestino, setContaDestino] = useState('');
+  const [valor, setValor] = useState("R$ ");
 
+  const mudar = (elm) => {
+    elm = elm.replace("R","").replace("$","").replace(".","").replace(",","")
+    if (elm.length >= 3){
+      let part1 = elm.slice(0, -2); // "Olá, Mun"
+      let part2 = elm.slice(-2);    // "do!"
+      elm = part1 + "," + part2;
+    }
+    
+    setValor("R$"+elm)
+  }
 
+  const salvar = () => {
+    let dados = {
+      "descricao":descricao,
+      "data": data,
+      "tipoTransferencia": tipoTransferencia,
+      "contaOrigem": contaOrigem,
+      "contaDestino": contaDestino,
+      "valor": valor
+    }
+
+    dados.valor = parseFloat(dados.valor.replace("R$","").replace(",","."))
+    
+    post("/transferencia", dados)
+  }
   //retorna a view e coloca o valor inicial como 0 e exibe o texto de nova transferência
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Nova Transferência</Text>
-      <Text style={styles.value}>R$ 0,00</Text>
+      <TextInput 
+        style={styles.value}
+        // placeholder="0,00"
+        value={valor}
+        onChangeText={(valor) => mudar(valor)}
+        keyboardType='numeric'
+        />
 
 
-      //os TextInptut tem dois campos que são controlados pelo estado correspondente e onChangeText atualiza o estado
       <TextInput
         style={styles.input}
         placeholder="Descrição"//placeholder é um texto temporário
@@ -35,7 +65,6 @@ const novaTransacao = () => {
       />
 
 
-      //O picker vc pode selecionar o tipo de transferência; que o valor é controldo pelo estado tipoTransferencia
       <Picker
         selectedValue={tipoTransferencia}
         onValueChange={(itemValue, itemIndex) => setTipoTransferencia(itemValue)}
@@ -47,7 +76,6 @@ const novaTransacao = () => {
       </Picker>
 
 
-      //tem dois dois campos que são controlados pelos estados que tem abaixo
     <TextInput
         style={styles.input}
         placeholder="Conta Origem"
@@ -62,7 +90,7 @@ const novaTransacao = () => {
         onChangeText={setContaDestino}
       />
 
-      <Button title="Salvar" onPress={() => {}} />
+      <Button title="Salvar" onPress={() => salvar()} />
     </View>
   );
 };
@@ -100,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default novaTransacao;
+export default novaTraferencia;
