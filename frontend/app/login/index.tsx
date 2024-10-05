@@ -1,10 +1,33 @@
-import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View} from "react-native";
+import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View, Alert} from "react-native";
 import { styles } from "../../assets/styles/login";
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
+
 
 export default function App() {
     // texto padrão improtado como constante
     const texto = styles.text;
+
+        const [cpf, setCpf] = useState('');
+        const [senha, setSenha] = useState('');
+    
+        const handleLogin = async () => {
+            try {
+                const response = await axios.post('http://localhost:8081/login', {
+                    email: cpf,
+                    senha: senha
+                });
+    
+                if (response.status === 200) {
+                    Alert.alert("Sucesso", "Login bem-sucedido");
+                    // Trate a lógica após o login aqui (ex: navegação)
+                } else {
+                    Alert.alert("Erro", "Credenciais inválidas");
+                }
+            } catch (error) {
+                Alert.alert("Erro", "Erro ao realizar login");
+            }
+        };
 
     return (
         
@@ -36,7 +59,7 @@ export default function App() {
             />
 
             {/* botão de login */}
-            <TouchableOpacity style={styles.button}> 
+            <TouchableOpacity style={styles.button} onPress={handleLogin}> 
                 <Text style={{...texto, color: '#fff'}}>Entrar</Text>
             </TouchableOpacity>
 
