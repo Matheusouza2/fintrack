@@ -86,7 +86,6 @@ Endpoint para Mostrar uma transferencia por id
 routes.get("/transferencias/:id", async (req, res) => {
 
 });
-
 //Endpoints referentes ao controller de cartão de crédito
 routes.post("/credito", cartaoController.criarCredito);
 

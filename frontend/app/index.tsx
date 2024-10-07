@@ -1,4 +1,4 @@
-import DespesasPorCategoria from "./despesasPorCategoria/DespesasPorCategoria"
+import DespesasPorCategoria from "../components/despesasPorCategoria"
 import { View } from "react-native";
 import { Link } from "expo-router";
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -5,11 +6,25 @@ import { post } from "../../services/axios"
 
 //componente funcional novaTransacao e seta useState para criar a descrição, data, tipo de Transferência, conta de Origem e conta de Destino
 const novaTraferencia = () => {
+=======
+import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Link } from 'expo-router';
+import { Picker } from '@react-native-picker/picker';
+import { styles } from "../../assets/styles/novaTransferencia";
+
+
+
+const novaTransferencia = () => {
+
+  const [valor, setValor] = useState('0,00');
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState('');
   const [tipoTransferencia, setTipoTransferencia] = useState('Não recorrente');
   const [contaOrigem, setContaOrigem] = useState('');
   const [contaDestino, setContaDestino] = useState('');
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
   const [valor, setValor] = useState("R$ ");
 
   const mudar = (elm) => {
@@ -53,18 +68,70 @@ const novaTraferencia = () => {
       <TextInput
         style={styles.input}
         placeholder="Descrição"//placeholder é um texto temporário
+=======
+
+
+  const handleMudancaValor = (text: string) => {
+
+    if (text === '') {
+      setValor('0,00');
+      return;
+    }
+
+    const entradaTratada = text.replace(/\D/g, '');
+    const quantia = parseFloat(entradaTratada) / 100;
+    const valorFormatado = quantia.toFixed(2).replace('.', ',');
+
+    setValor(valorFormatado);
+  };
+
+
+  return (
+    <View style={styles.container}>
+
+      <View style={styles.containerCabecalho}>
+        <Link href="/listarTransferencias">
+          <Image
+            source={require('../../assets/icons/iconeVoltar.png')}
+            style={styles.setaRetroceder}
+          />
+          </Link>
+        <Text style={styles.titulo}>Nova Transferência</Text>
+      </View>
+
+      <TextInput
+        style={styles.campoValorEntrada}
+        keyboardType="numeric"
+        value={`R$ ${valor}`}
+        onChangeText={handleMudancaValor}
+      />
+
+      <TextInput
+        style={styles.campoEntrada}
+        placeholder="Descrição"
+        placeholderTextColor="#A9A9A9"
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
         value={descricao}
         onChangeText={setDescricao}
       />
 
       <TextInput
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
         style={styles.input}
         placeholder="Data"  //placeholder é um texto temporário
+=======
+        style={styles.campoEntrada}
+        placeholder="Data"
+        placeholderTextColor="#A9A9A9"
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
         value={data}
         onChangeText={setData}
       />
 
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
 
+=======
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
       <Picker
         selectedValue={tipoTransferencia}
         onValueChange={(itemValue, itemIndex) => setTipoTransferencia(itemValue)}
@@ -75,26 +142,49 @@ const novaTraferencia = () => {
         <Picker.Item label="Fixo Mensal" value="Fixo Mensal" />
       </Picker>
 
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
 
     <TextInput
         style={styles.input}
         placeholder="Conta Origem"
+=======
+      <TextInput
+        style={styles.campoEntrada}
+        placeholder="Conta Origem"
+        placeholderTextColor="#A9A9A9"
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
         value={contaOrigem}
         onChangeText={setContaOrigem}
       />
 
       <TextInput
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
         style={styles.input}
         placeholder="Conta Destino"
+=======
+        style={styles.campoEntrada}
+        placeholder="Conta Destino"
+        placeholderTextColor="#A9A9A9"
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
         value={contaDestino}
         onChangeText={setContaDestino}
       />
 
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
       <Button title="Salvar" onPress={() => salvar()} />
+=======
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botaoSalvar}>
+            <Text style={styles.textoBotao}>Salvar</Text>
+        </TouchableOpacity>
+      </View>
+
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx
     </View>
   );
 };
 
+<<<<<<< HEAD:frontend/app/novaTraferencia/index.tsx
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -129,3 +219,7 @@ const styles = StyleSheet.create({
 });
 
 export default novaTraferencia;
+=======
+
+export default novaTransferencia;
+>>>>>>> origin/develop:frontend/app/novaTransferencia/index.tsx

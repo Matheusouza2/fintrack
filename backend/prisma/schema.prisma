@@ -84,10 +84,7 @@ model CartaoDeCredito {
 
 model Categoria {
   id                  Int            @id @default(autoincrement())
-  nome                String
   descricao           String?
-  tipo                String
-  cor                 String
   icone               String
   subcategorias       Subcategoria[] 
 }
@@ -98,4 +95,19 @@ model Subcategoria {
   icone               String
   categoriaId         Int
   categoria           Categoria      @relation(fields: [categoriaId], references: [id])
+}
+
+model ObjetivoFinanceiro {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  valorObjetivo Float
+  valorAtual    Float    @default(0)
+  dataAlvo     DateTime
+  status       Status    @default(PENDENTE)
+}
+
+enum Status {
+  PENDENTE
+  ALCANCADO
+  FALHOU
 }
