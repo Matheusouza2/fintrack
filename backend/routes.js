@@ -48,10 +48,9 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
-<<<<<<< HEAD
+
 routes.post("/transferencia", transferenciasController.CriarTransferencia)
-=======
-<<<<<<< HEAD
+
 /*
  Rotas para transferencia
 */ 
@@ -59,9 +58,6 @@ routes.post("/transferencia", transferenciasController.CriarTransferencia)
 /* 
 Endpoint para Listar Transferencias
 */
-routes.get("/transferencias", async (req, res) => {
-
-});
 
 /* 
 Endpoint para Criar Transferencias
@@ -90,7 +86,7 @@ Endpoint para Mostrar uma transferencia por id
 routes.get("/transferencias/:id", async (req, res) => {
 
 });
-=======
+
 //Endpoints referentes ao controller de cartão de crédito
 routes.post("/credito", cartaoController.criarCredito);
 
@@ -102,9 +98,4 @@ routes.put("/credito/:id", cartaoController.atualizarCredito);
 
 routes.get("/credito/:id",cartaoController.buscarID);
 
-
-
->>>>>>> 26b144454e7f5af40e37c220f1b285d49f340f1a
-
->>>>>>> 7b2d085f064cfd9f76672d130c28fe65f9f29a95
 export default routes;
