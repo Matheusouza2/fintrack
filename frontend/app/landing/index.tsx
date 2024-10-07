@@ -8,7 +8,7 @@ export default function Landing() {
     return (
         <View style={styles.container}>
             <View style={styles.balao}>
-                <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
+                <Image source={require('../../assets/imagens/Nubank.png')} style={styles.logo} />
                 <Text style={styles.titulo}>
                     <Text style={styles.tituloFin}>Fin</Text>
                     <Text style={styles.tituloTrack}>track</Text>
