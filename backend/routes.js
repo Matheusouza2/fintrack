@@ -46,7 +46,6 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
-<<<<<<< HEAD
 /*
  Rotas para transferencia
 */ 
@@ -85,7 +84,6 @@ Endpoint para Mostrar uma transferencia por id
 routes.get("/transferencias/:id", async (req, res) => {
 
 });
-=======
 //Endpoints referentes ao controller de cartão de crédito
 routes.post("/credito", cartaoController.criarCredito);
 
@@ -99,6 +97,5 @@ routes.get("/credito/:id",cartaoController.buscarID);
 
 
 
->>>>>>> 26b144454e7f5af40e37c220f1b285d49f340f1a
 
 export default routes;
