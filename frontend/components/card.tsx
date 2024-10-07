@@ -32,7 +32,7 @@ export default function Card() {
             <Text style={styles.valueTextGreen}>R$ {receitasConsideradas}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.infoText}>Despezas consideradas</Text>
+            <Text style={styles.infoText}>Despesas consideradas</Text>
             <Text style={styles.valueTextRed}>R$ {receitasDesconsideradas}</Text>
           </View>
         </View>

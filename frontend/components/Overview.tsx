@@ -26,7 +26,7 @@ function Item({ title, img }) {
     )
 }
 
-export function Overview() {
+export default function Overview() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Visão Geral</Text>
