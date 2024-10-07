@@ -4,7 +4,6 @@ import Style from '../assets/styles/RecuperarSenha'; // Importando o arquivo de 
 
 export default function RecuperacaoSenhaTela() {
     const [email, setEmail] = useState('');
-
     const enviarEmailRecuperacao = () => {
         console.log('Email enviado para:', email);
     };
