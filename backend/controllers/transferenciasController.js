@@ -1,4 +1,4 @@
-import {transferencias} from "../models/transferencias.js"
+// import {transferencias} from "../models/transferencias.js"
 
 /* 
 Controllers para as transferencias 
@@ -8,7 +8,9 @@ Controllers para as transferencias
 /* 
 Cria uma nova transferencia 
 */
-export async function CriarTransferencia(data) {
+export async function CriarTransferencia(req,res) {
+
+    res.send({"message": "OK"})
     
 }
 

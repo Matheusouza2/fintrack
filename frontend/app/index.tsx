@@ -18,6 +18,8 @@ export default function Index() {
       <DespesasPorCategoria />
       <Link href="/splashScreen">Splash</Link>
       <Link href="/novaConta">Nova Conta</Link>
+      <Link href="/novaTraferencia">Nova Transferencia</Link>
+
     </View>
   );
 }
