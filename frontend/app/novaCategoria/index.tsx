@@ -70,6 +70,10 @@ const CriarCategoria: React.FC = () => {
         <Text style={styles.label}>Ícone</Text>
         <View style={styles.iconCircle} />
       </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.botaoEnviar} onPress={handleSalvar}>
+            <Text style={styles.textoBotaoEnviar}>Salvar</Text>
+          </TouchableOpacity>
     </View>
   );
 };
