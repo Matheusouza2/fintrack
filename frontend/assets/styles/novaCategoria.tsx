@@ -75,6 +75,19 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
+  botaoEnviar: {
+    marginTop: 50,
+    backgroundColor: "#00DFA3",
+    width: 174,
+    height: 33,
+    borderRadius: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textoBotaoEnviar: {
+    color: "#EDEDEB",
+    fontSize: 20,
+  }
 });
 
 export default styles;
