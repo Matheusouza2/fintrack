@@ -2,6 +2,7 @@
 alterar, listar, excluir e mostrar uma única conta com base no id      */
 
 import { CriarConta, ListarContaPorId } from "../models/contas.js";
+import { listarContasPorUsuarioId } from '../models/contas.';
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
@@ -57,3 +58,13 @@ export async function mostrarContas(req, res) {
 
 }
 
+const listarContasPorUsuarioId = async (req, res) => {
+  const { usuarioId } = req.params;
+
+  try {
+    const contas = await listarContasPorUsuarioId(usuarioId);
+    return res.status(200).json(contas);
+  } catch (error) {
+    return res.status(500).json({ mensagem: error.message });
+  }
+};

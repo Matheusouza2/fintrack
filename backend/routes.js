@@ -15,9 +15,9 @@ routes.post("/contas", contasController.cadastrarConta);
 
 routes.get("/contas/id", contasController.mostrarContas);
 
-routes.put("/contas", contasController.alterarContas);
+routes.put("/contas/", contasController.alterarContas);
 
-routes.get("/contas", contasController.listarContas);
+routes.get("/contas/:usuarioId", contasController.listarContasPorUsuarioId);
 
 routes.delete("/contas/:id", contasController.excluirContas);
 
