@@ -1,15 +1,12 @@
 import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
-import { loginUsuario } from "./controllers/loginController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
-import * as transferenciasController from "./controllers/transferenciasController.js"
-import * as cartaoController from "./controllers/cartaoController.js"
-
+import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
+import { loginUsuario } from "./controllers/loginController.js";
 const routes = express.Router();
 
-routes.get("/ping", (req,res) => { return res.send("Pong!")})
 // Endpoints referentes ao controller de contas
 routes.post("/contas", contasController.cadastrarConta);
 
@@ -29,7 +26,7 @@ routes.post("/login", loginUsuario);
 
 routes.post("/subcategoria", subcategoriaController.criarSubcategoria);
 
-// routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
+routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
 
 routes.post("/subcategoria", subcategoriaController.atualizarSubcategoria);
 
@@ -48,44 +45,44 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
-
-routes.post("/transferencia", transferenciasController.CriarTransferencia)
-
 /*
  Rotas para transferencia
-*/ 
-
-/* 
-Endpoint para Listar Transferencias
 */
+// Endpoints objetivos financeiros
+routes.get(
+  "/objetivosfinanceiros",
+  objetivosFinanceirosController.lerObjetivoFinanceiro
+);
+
+routes.delete(
+  "/objetivosfinanceiros/:id",
+  objetivosFinanceirosController.apagarObjetivoFinanceiro
+);
+
+routes.post(
+  "/objetivosfinanceiros",
+  objetivosFinanceirosController.criarObjetivoFinanceiro
+);
 
 /* 
 Endpoint para Criar Transferencias
 */
-routes.post("/transferencias/create", async (req, res) => {
-
-});
+routes.post("/transferencias/create", async (req, res) => {});
 
 /* 
 Endpoint para Atualizar Transferencias
 */
-routes.put("/transferencias/:id", async (req, res) => {
-
-});
+routes.put("/transferencias/:id", async (req, res) => {});
 
 /* 
 Endpoint para Apagar Transferencias
 */
-routes.delete("/transferencias/:id", async (req, res) => {
-
-});
+routes.delete("/transferencias/:id", async (req, res) => {});
 
 /* 
 Endpoint para Mostrar uma transferencia por id
 */
-routes.get("/transferencias/:id", async (req, res) => {
-
-});
+routes.get("/transferencias/:id", async (req, res) => {});
 //Endpoints referentes ao controller de cartão de crédito
 routes.post("/credito", cartaoController.criarCredito);
 
@@ -95,6 +92,11 @@ routes.delete("/credito/:id", cartaoController.deletarCredito);
 
 routes.put("/credito/:id", cartaoController.atualizarCredito);
 
-routes.get("/credito/:id",cartaoController.buscarID);
+routes.get("/credito/:id", cartaoController.buscarID);
+
+routes.put(
+  "objetivosfinanceiros/:id",
+  objetivosFinanceirosController.atualizarObjetivoFinanceiro
+);
 
 export default routes;
