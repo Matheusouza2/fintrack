@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,107 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id           Int    @id @default(autoincrement())
+  nomeCompleto String
+  email        String @unique
+  cpf          String @unique
+  senha        String
+}
+
+model Transacao {
+  id        Int           @id @default(autoincrement())
+  valor     Float
+  tipo      TipoTransacao
+  descricao String?
+  createdAt DateTime      @default(now())
+}
+
+model Bancos {
+  id              Int      @id @default(autoincrement())
+  codigo          String   @unique
+  cnpj            String   @unique
+  nome            String   @unique
+  nome_curto      String   @unique
+  icone           String   @unique
+  primary_color   String   @unique
+  secondary_color String   @unique
+  created_at      DateTime @default(now()) @db.Timestamp(0)
+  Contas          Contas[]
+}
+
+model Contas {
+  id                         Int              @id @default(autoincrement())
+  agencia                    String
+  conta                      String
+  saldoInicial               Float
+  valorChequeEspecial        Float
+  banco                      Int
+  categoria                  String
+  conta_banco                Bancos           @relation(fields: [banco], references: [id])
+  transferenciasDestinatario Transferencias[] @relation("ContaDestinatario")
+  transferenciasRemetente    Transferencias[] @relation("ContaRemetente")
+
+  @@index([banco], map: "Contas_banco_fkey")
+}
+
+model CartaoDeCredito {
+  id              Int      @id @default(autoincrement())
+  numero          String   @unique
+  nomeTitular     String
+  dataValidade    DateTime
+  codigoSeguranca String
+  limiteCredito   Float
+  saldoDisponivel Float
+}
+
+model Transferencias {
+  id                    Int    @id @default(autoincrement())
+  id_conta_remetente    Int
+  id_conta_destinatario Int
+  valor                 Float
+  conta_2               Contas @relation("ContaDestinatario", fields: [id_conta_destinatario], references: [id])
+  conta                 Contas @relation("ContaRemetente", fields: [id_conta_remetente], references: [id])
+
+  @@index([id_conta_destinatario], map: "Transferencias_id_conta_destinatario_fkey")
+  @@index([id_conta_remetente], map: "Transferencias_id_conta_remetente_fkey")
+}
+
+model Categoria {
+  id            Int            @id @default(autoincrement())
+  descricao     String?
+  icone         String
+  subcategorias Subcategoria[]
+}
+
+model Subcategoria {
+  id          Int       @id @default(autoincrement())
+  descricao   String
+  icone       String
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  @@index([categoriaId], map: "Subcategoria_categoriaId_fkey")
+}
+
+model ObjetivoFinanceiro {
+  id            Int      @id @default(autoincrement())
+  nome          String
+  valorObjetivo Float
+  valorAtual    Float    @default(0)
+  dataAlvo      DateTime
+  status        Status   @default(PENDENTE)
+}
+
+enum TipoTransacao {
+  CREDITO
+  DEBITO
+}
+
+enum Status {
+  PENDENTE
+  ALCANCADO
+  FALHOU
 }
