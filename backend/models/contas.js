@@ -5,7 +5,7 @@ const db = new PrismaClient();
 
 export const CriarConta = async (dadosUsuario) => {
     try {
-      //adiciona os dados no banco
+      // Adiciona os dados no banco
     const novaConta = await db.contas.create({
       data: dadosUsuario,
     });
@@ -17,9 +17,31 @@ export const CriarConta = async (dadosUsuario) => {
 
 export const VerConta = (UsuarioId) => {}
 
-export const AtualizarConta = (ContaId, Alteracoes) => {}
+export const AtualizarConta = async (ContaId, Alteracoes) => {
 
-export const DeletarContas = (ContaId) => {}
+  try {
+    //adiciona os dados no banco
+  const novaConta = await db.contas.update({
+    where: { id: ContaId},
+    data:  Alteracoes
+  });
+
+  return novaConta;
+} catch (error) {
+  throw new Error(`Erro ao atualizar conta: ${error.message}`);
+}
+}
+
+export const DeletarContas = async (ContaId) => {
+  try {
+    const conta = await db.contas.delete({
+      where: { id: parseInt(ContaId) }
+    });
+    return conta;
+  } catch (error) {
+    throw new Error(`Falha na exclusão da conta - ${error.message}`);
+  }
+};
 
 export const ListarContaPorId = async(ContaId) => {
   try {
@@ -30,4 +52,34 @@ export const ListarContaPorId = async(ContaId) => {
 }catch (error) {
   throw new Error(`Erro ao visualizar conta: ${error.message}`);
 }
-}
+};
+
+export const listarContasPorUsuarioId = async (usuarioId) => {
+  if (!usuarioId) {
+    throw new Error("O ID do usuário deve ser fornecido.");
+  }
+
+  try {
+    const contas = await Conta.findAll({
+      where: { usuarioId },
+      attributes: [
+        'saldo_inicial', 
+        'receitas', 
+        'despesas', 
+        'transf_creditadas', 
+        'transf_debitadas', 
+        'saldo_atual', 
+        'saldo_previsto'
+      ],
+    });
+
+    if (contas.length === 0) {
+      return { mensagem: "Nenhuma conta encontrada para este usuário." };
+    }
+
+    return contas; // Retorna todas as contas do usuário
+  } catch (error) {
+    console.error(`Erro ao listar contas do usuário: ${error.message}`);
+    throw new Error("Erro interno ao buscar contas. Tente novamente mais tarde.");
+  }
+};
