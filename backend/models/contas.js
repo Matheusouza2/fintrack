@@ -17,7 +17,19 @@ export const CriarConta = async (dadosUsuario) => {
 
 export const VerConta = (UsuarioId) => {}
 
-export const AtualizarConta = (ContaId, Alteracoes) => {}
+export const AtualizarConta = async (ContaId, Alteracoes) => {
+  try{
+    const atualizacoes = await db.contas.update({
+      where: {id: parseInt(ContaId)},
+      data: Alteracoes
+    });
+    return atualizacoes;
+  }
+  catch (error) {
+    throw new Error(`Erro ao atualizar conta: ${error.message}`);
+  }
+
+};
 
 export const DeletarContas = async (ContaId) => {
   try {
