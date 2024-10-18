@@ -19,7 +19,16 @@ export const VerConta = (UsuarioId) => {}
 
 export const AtualizarConta = (ContaId, Alteracoes) => {}
 
-export const DeletarContas = (ContaId) => {}
+export const DeletarContas = async (ContaId) => {
+  try {
+    const conta = await db.contas.delete({
+      where: { id: parseInt(ContaId) }
+    });
+    return conta;
+  } catch (error) {
+    throw new Error(`Falha na exclusão da conta - ${error.message}`);
+  }
+};
 
 export const ListarContaPorId = async(ContaId) => {
   try {
