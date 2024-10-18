@@ -1,4 +1,5 @@
 import Categoria from '../models/categorias.js';
+
 /***************************************************
  Mostra uma categoria específica.
  **************************************************/
@@ -22,7 +23,21 @@ import Categoria from '../models/categorias.js';
  Método para listar todas as categorias.
  **************************************************/
 export async function listarCategorias(req, res) {
-
+    try {
+        // 1. Buscar todas as categorias no banco de dados
+        const categorias = await Categoria.findAll();
+    
+        // 2. Verificar se existem categorias
+        if (categorias.length === 0) {
+          return res.status(404).json({ message: 'Nenhuma categoria encontrada' });
+        }
+    
+        // 3. Responder com sucesso as categorias
+        return res.status(200).json({ categorias });
+      } catch (error) {
+        // 4. Tratar erro e responder adequadamente
+        return res.status(500).json({ message: 'Erro ao listar categorias', error });
+      }
 }
 
 
