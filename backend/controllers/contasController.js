@@ -5,31 +5,38 @@ import { CriarConta, ListarContaPorId, DeletarContas } from "../models/contas.js
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
-  const { agencia, conta, banco_id, saldoInicial, valorChequeEspecial } = req.body;
-
+  const {
+    agencia,
+    conta,
+    saldoInicial,
+    valorChequeEspecial,
+    conta_banco,
+    categoria
+  } = req.body;
   // validação
   if (
     !agencia ||
     !conta ||
-    !banco_id ||
     saldoInicial === undefined ||
-    valorChequeEspecial === undefined
+    valorChequeEspecial === undefined ||
+    !conta_banco ||
+    !categoria
   ) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "Agência, conta, banco, saldo inicial e valor do cheque especial são obrigatórios.",
-      });
+    return res.status(400).json({
+      message:
+        "Agência, conta, banco, saldo inicial e valor do cheque especial são obrigatórios.",
+    });
   }
 
   try {
     const dadosConta = {
       agencia,
       conta,
-      banco_id,
       saldoInicial,
       valorChequeEspecial,
+      categoria,
+      conta_banco
+      
     };
     const novaConta = await CriarConta(dadosConta);
     res.status(201).json(novaConta);
@@ -37,7 +44,6 @@ export async function cadastrarConta(req, res) {
     res.status(500).json({ message: `Erro ao criar conta: ${error.message}` });
   }
 }
-
 
 export function alterarContas(req, res) {}
 
@@ -61,11 +67,11 @@ export async function mostrarContas(req, res) {
   const idConta = req.params.id;
 
   try {
-    const conta = await ListarContaPorId(idConta)
+    const conta = await ListarContaPorId(idConta);
     res.status(201).json(conta);
   } catch (error) {
-    res.status(500).json({ message: `Erro ao consultar conta${error.message}` })
+    res
+      .status(500)
+      .json({ message: `Erro ao consultar conta${error.message}` });
   }
-
 }
-
