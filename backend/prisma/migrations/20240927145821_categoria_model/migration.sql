@@ -15,6 +15,7 @@ CREATE TABLE `Subcategoria` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `descricao` VARCHAR(191) NOT NULL,
     `icone` VARCHAR(191) NOT NULL,
+    `cor` VARCHAR(191) NOT NULL,
     `categoriaId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
