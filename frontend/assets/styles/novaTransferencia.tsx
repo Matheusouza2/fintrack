@@ -16,7 +16,14 @@ export const styles = StyleSheet.create({
       marginBottom: 20,
       color: '#0188EA',
     },
-  
+    input: {
+      height: 40,
+      borderColor: '#CCC',
+      borderWidth: 1,
+      marginBottom: 20,
+      paddingHorizontal: 10,
+      backgroundColor: '#FFF',
+    },
     containerCabecalho: {
       flexDirection: 'row',
       alignItems: 'center',
