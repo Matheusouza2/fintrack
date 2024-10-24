@@ -1,7 +1,9 @@
 /* Essa classe serve para adicionar os controller de contas que deve conter os métodos de cadastrar, 
 alterar, listar, excluir e mostrar uma única conta com base no id      */
 
-import { CriarConta, ListarContaPorId, AtualizarConta, DeletarContas, listarContasPorUsuarioId } from "../models/contas.js";
+import { encontrarBanco } from "../models/bancos.js";
+import { BuscarCategoria } from "../models/categorias.js";
+import { CriarConta, ListarContaPorId, AtualizarConta, DeletarContas, listarContasPorUsuarioId as ListarContasPorUsuarioId } from "../models/contas.js";
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
@@ -29,15 +31,31 @@ export async function cadastrarConta(req, res) {
   }
 
   try {
+    const banco = await encontrarBanco(conta_banco)
+
+    if (!banco) {
+      res.status(401).json({ message: 'Banco não encontrado' });
+    }
+    
+    const Categoria = await BuscarCategoria(conta_banco)
+
+    if (!Categoria) {
+      res.status(401).json({ message: 'Categoria não encontrada' });
+    }
+
     const dadosConta = {
       agencia,
       conta,
       saldoInicial,
-      valorChequeEspecial,
+      agencia,
       categoria,
-      conta_banco
-      
+      conta,
+      conta_banco: {
+        connect: { id: Number(conta_banco) } // Conectar à entidade existente com ID 1
+      },
+      valorChequeEspecial: Number(valorChequeEspecial),
     };
+
     const novaConta = await CriarConta(dadosConta);
     res.status(201).json(novaConta);
   } catch (error) {
@@ -72,8 +90,6 @@ export async function alterarContas(req, res) {
   if(valorChequeEspecial){
     dados.valorChequeEspecial =  valorChequeEspecial
   }
-
-  console.log(dados)
 
   try {
     const novaConta = await AtualizarConta(parseInt(req.params.id), dados);
@@ -121,7 +137,7 @@ const listarContasPorUsuarioId = async (req, res) => {
   const { usuarioId } = req.params;
 
   try {
-    const contas = await listarContasPorUsuarioId(usuarioId);
+    const contas = await ListarContasPorUsuarioId(usuarioId);
     return res.status(200).json(contas);
   } catch (error) {
     return res.status(500).json({ mensagem: error.message });
