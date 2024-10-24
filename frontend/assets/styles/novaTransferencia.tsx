@@ -59,13 +59,27 @@ export const styles = StyleSheet.create({
     },
   
     picker: {
-      width: '95%',
-      marginTop: 40,
-      height: 50,
-      color: '#A9A9A9',
-      marginBottom: 20, // Define uma margem vertical uniforme para o Picker também
+      width: 360,          // Largura especificada no Figma
+      height: 70,          // Altura especificada no Figma
+      borderBottomWidth: 2, // Borda inferior de 2px
+      borderBottomColor: '#0188EA',  // Cor da borda inferior
+      opacity: 1,          
+      color: '#A9A9A9',    // Cor do texto dentro do Picker
+      marginBottom: 20,    // Margem inferior, para espaçamento uniforme
     },
-  
+    
+    pickerItem: {
+      width: 360,         
+      height: 23,          // Altura do texto
+      fontFamily: 'Roboto',
+      fontSize: 20,        
+      fontWeight: '400',   
+      lineHeight: 23.44,   // Altura da linha
+      textAlign: 'left',  
+      color: '#A9A9A9',    
+    },
+    
+    
     containerBotao: {
       padding: 15,
       borderRadius: 20,
