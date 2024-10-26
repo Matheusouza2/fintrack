@@ -1,4 +1,6 @@
 import Categoria from '../models/categorias.js';
+import { alterarCategoria } from '../models/categorias.js';
+
 
 /***************************************************
  Mostra uma categoria específica.
@@ -53,7 +55,31 @@ export async function cadastrarCategoria(req, res) {
  Atualiza os dados de uma categoria específica.
  **************************************************/
 export async function atualizarCategoria(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message : 'O ID da categoria deve ser fornecido.' });
 
+
+    const { descricao, icone } = req.body;
+
+    if (!icone)
+        return res.status(400).json({ message : "Um ícone deve ser fornecido." });
+
+
+    let alteracoes = {};
+    alteracoes.icone = icone;
+
+    if (!descricao)
+        alteracoes.descricao = null;
+    else
+        alteracoes.descricao = descricao;
+
+
+    try {
+        const mudancaCategoria = await alterarCategoria(parseInt(req.params.id), alteracoes);
+        return res.status(201).json(mudancaCategoria);
+    } catch (error) {
+        return res.status(500).json({ message : `${error.message}` });
+    }
 }
 
 
