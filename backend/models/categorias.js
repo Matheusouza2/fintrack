@@ -23,10 +23,22 @@ export const CriarCategoria = async (data) => {
   }
 };
 
-
 export const ListarCategorias = () => {}
 
-export const AlterarCategoria = (Id, alteracoes) => {}
+export const AlterarCategoria = async (idCategoria, alteracoes) => {
+    try {  
+
+        const categoria = await db.categoria.update({
+            where: { id : idCategoria },
+            data:  alteracoes
+        });
+
+        return categoria;
+
+    } catch (error) {
+        throw new Error(`Falha ao modificar categoria: ${error.message}`);
+    }
+}
 
 export const ExcluirCategoria = (Id) => {}
 
