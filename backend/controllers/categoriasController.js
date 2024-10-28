@@ -1,4 +1,4 @@
-import Categoria from '../models/categorias.js';
+import { BuscarCategoria, AlterarCategoria, CriarCategoria, ExcluirCategoria, ListarCategorias } from '../models/categorias.js';
 
 /***************************************************
  Mostra uma categoria específica.
@@ -9,7 +9,7 @@ import Categoria from '../models/categorias.js';
         if (!categoriaId) {
             return res.status(400).json({ error: 'ID da categoria é obrigatório' });
         }
-        const categoria = await Categoria.BuscarCategoria(categoriaId);
+        const categoria = BuscarCategoria(categoriaId);
         if (!categoria) {
             return res.status(404).json({ error: 'Categoria não encontrada' });
         }
@@ -25,7 +25,7 @@ import Categoria from '../models/categorias.js';
 export async function listarCategorias(req, res) {
     try {
         // 1. Buscar todas as categorias no banco de dados
-        const categorias = await Categoria.findAll();
+        const categorias = ListarCategorias();
     
         // 2. Verificar se existem categorias
         if (categorias.length === 0) {
