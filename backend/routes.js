@@ -45,6 +45,8 @@ routes.get("/categorias/:id", categoriasController.obterCategoria);
 
 routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
+routes.post("/usuarios/", usuarioController.cadastrarUsuario);
+
 /*
  Rotas para transferencia
 */

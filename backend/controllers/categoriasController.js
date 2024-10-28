@@ -1,6 +1,4 @@
-import Categoria from '../models/categorias.js';
-import { alterarCategoria } from '../models/categorias.js';
-
+import { BuscarCategoria, AlterarCategoria, CriarCategoria, ExcluirCategoria, ListarCategorias } from '../models/categorias.js';
 
 /***************************************************
  Mostra uma categoria específica.
@@ -11,7 +9,7 @@ import { alterarCategoria } from '../models/categorias.js';
         if (!categoriaId) {
             return res.status(400).json({ error: 'ID da categoria é obrigatório' });
         }
-        const categoria = await Categoria.BuscarCategoria(categoriaId);
+        const categoria = BuscarCategoria(categoriaId);
         if (!categoria) {
             return res.status(404).json({ error: 'Categoria não encontrada' });
         }
@@ -27,7 +25,7 @@ import { alterarCategoria } from '../models/categorias.js';
 export async function listarCategorias(req, res) {
     try {
         // 1. Buscar todas as categorias no banco de dados
-        const categorias = await Categoria.findAll();
+        const categorias = ListarCategorias();
     
         // 2. Verificar se existem categorias
         if (categorias.length === 0) {
@@ -46,9 +44,23 @@ export async function listarCategorias(req, res) {
 /***************************************************
  Cria uma categoria no sistema.
  **************************************************/
-export async function cadastrarCategoria(req, res) {
-
-}
+ export async function cadastrarCategoria(req, res) {
+    try {
+      const { nome, descricao, tipo, cor, icone } = req.body;
+  
+      
+      if (!nome || !tipo || !cor || !icone) {
+        return res.status(400).json({ message: 'Nome, tipo, cor e ícone são obrigatórios.' });
+      }
+      const novaCategoria = await CriarCategoria({ nome, descricao, tipo, cor, icone });
+  
+      return res.status(201).json(novaCategoria);
+    } catch (error) {
+      console.error('Erro ao criar categoria:', error);
+      return res.status(500).json({ message: 'Erro ao criar categoria.' });
+    }
+  }
+  
 
 
 /***************************************************
@@ -75,7 +87,7 @@ export async function atualizarCategoria(req, res) {
 
 
     try {
-        const mudancaCategoria = await alterarCategoria(parseInt(req.params.id), alteracoes);
+        const mudancaCategoria = await AlterarCategoria(parseInt(req.params.id), alteracoes);
         return res.status(201).json(mudancaCategoria);
     } catch (error) {
         return res.status(500).json({ message : `${error.message}` });
