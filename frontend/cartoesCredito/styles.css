@@ -1,0 +1,54 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+  },
+  cabecalho: {
+    backgroundColor: '#003366',
+    padding: 16,
+  },
+  titulo: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  cartao: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    margin: 8,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  nomeBanco: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  limite: {
+    fontSize: 14,
+    marginVertical: 2,
+  },
+  barrinha: {
+    height: 1,
+    backgroundColor: '#cccccc',
+    marginVertical: 10,
+  },
+  conta: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  dados: {
+    fontSize: 12,
+    marginVertical: 2,
+  },
+  fatura: {
+    fontSize: 14,
+    marginTop: 10,
+  }
+});
+
+export default styles;

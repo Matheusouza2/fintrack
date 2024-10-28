@@ -44,11 +44,11 @@ model Contas {
   valorChequeEspecial        Float
   banco                      Int
   categoria                  String
-  conta_banco                Bancos           @relation(fields: [banco], references: [id])
+  conta_banco                Bancos           @relation(fields: [banco], references: [id], map: "Contas_banco_fkey")
   transferenciasDestinatario Transferencias[] @relation("ContaDestinatario")
   transferenciasRemetente    Transferencias[] @relation("ContaRemetente")
 
-  @@index([banco], map: "Contas_banco_fkey")
+  @@index([banco], map: "Contas_banco_index")
 }
 
 model CartaoDeCredito {
@@ -66,11 +66,11 @@ model Transferencias {
   id_conta_remetente    Int
   id_conta_destinatario Int
   valor                 Float
-  conta_2               Contas @relation("ContaDestinatario", fields: [id_conta_destinatario], references: [id])
-  conta                 Contas @relation("ContaRemetente", fields: [id_conta_remetente], references: [id])
+  conta_2               Contas @relation("ContaDestinatario", fields: [id_conta_destinatario], references: [id], map: "Transferencias_destinatario_fkey")
+  conta                 Contas @relation("ContaRemetente", fields: [id_conta_remetente], references: [id], map: "Transferencias_remetente_fkey")
 
-  @@index([id_conta_destinatario], map: "Transferencias_id_conta_destinatario_fkey")
-  @@index([id_conta_remetente], map: "Transferencias_id_conta_remetente_fkey")
+  @@index([id_conta_destinatario], map: "Transferencias_destinatario_idx")
+  @@index([id_conta_remetente], map: "Transferencias_remetente_idx")
 }
 
 model Categoria {
@@ -85,9 +85,9 @@ model Subcategoria {
   descricao   String
   icone       String
   categoriaId Int
-  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  categoria   Categoria @relation(fields: [categoriaId], references: [id], map: "Subcategoria_categoria_fkey")
 
-  @@index([categoriaId], map: "Subcategoria_categoriaId_fkey")
+  @@index([categoriaId], map: "Subcategoria_categoria_idx")
 }
 
 model ObjetivoFinanceiro {
