@@ -47,7 +47,7 @@ const CriarCategoria: React.FC = () => {
         style={styles.input}
         placeholder="Descrição"
         value={descricao}
-        onChangeText={setDescricao}
+        // onChangeText={setDescricao}
       />
 
       <TextInput
