@@ -111,7 +111,6 @@ const novaTraferencia = () => {
         value={contaDestino}
         onChangeText={setContaDestino}
       />
-
       <Button title="Salvar" onPress={() => salvar()} />
     </View>
   );

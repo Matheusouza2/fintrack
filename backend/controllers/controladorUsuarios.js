@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-// import * as usuarioModel from "../model/usuario.js";
+import { criarUsuario, deletarUsuario, listaDeUsuarios, obterUsuarioPorId as obterUsuarioPorIdModel } from "../models/usuario.js";
 
 const prisma = new PrismaClient();
 
@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 export async function obterUsuarioPorId(request, response) {
   try {
     const { id } = request.params; // Pega o ID dos parâmetros da URL
-    const usuario = await usuarioModel.obterUsuarioPorId(id); // Chama o model
+    const usuario = await obterUsuarioPorIdModel(id); // Chama o model
 
     if (usuario) {
       response.status(200).json(usuario);
@@ -33,7 +33,24 @@ export function listarUsuarios(request, response) {}
 /***************************************************
  Cadastra um novo usuário.
  **************************************************/
-export function cadastrarUsuario(request, response) {}
+export async function cadastrarUsuario(request, response) {
+  const { nomeCompleto, email, cpf, senha } = request.body
+
+  if (!nomeCompleto || !email || !cpf || !senha) {
+    return response.status(400).json({ error: 'Preencha todos os campos' });
+  }
+
+  const data = {
+    nomeCompleto, 
+    email, 
+    cpf,
+    senha
+  }
+
+  const user = await criarUsuario(data)
+
+  response.status(201).json(user)
+}
 
 /***************************************************
  Atualiza os dados de um determinado usuário.
