@@ -40,13 +40,26 @@ const novaTransferencia = () => {
       let part2 = elm.slice(-2);    // "do!"
       elm = part1 + "," + part2;
     }
-    
-    setValor("R$"+elm)
-  }
+    setValor("R$" + elm);
+  };
+
+  const validarData = (data) => {
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    return regex.test(data);
+  };
+
+  const handleDataChange = (data) => {
+    setData(data);
+    if (!validarData(data)) {
+      setErrorMessage('Por favor, insira uma data válida no formato DD/MM/YYYY.');
+    } else {
+      setErrorMessage('');
+    }
+  };
 
   const salvar = () => {
     let dados = {
-      "descricao":descricao,
+      "descricao": descricao,
       "data": data,
       "tipoTransferencia": tipoTransferencia,
       "contaOrigem": contaOrigem,
@@ -93,7 +106,7 @@ const novaTransferencia = () => {
       />
 
       <TextInput
-        style={styles.campoEntrada}
+        style={styles.input}
         placeholder="Descrição"
         placeholderTextColor="#A9A9A9"
         value={descricao}
@@ -107,6 +120,7 @@ const novaTransferencia = () => {
         value={descricao}
         onChangeText={setDescricao}
       />
+      {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
       <TouchableOpacity style={{width:"98%",justifyContent:"center", alignItems:"center"}} onPress={showDatePicker}>
         <TextInput

@@ -72,7 +72,19 @@ export const styles = StyleSheet.create({
       borderColor: '#0188EA',
       fontSize: 15
     },
-  
+    
+    pickerItem: {
+      width: 360,         
+      height: 23,          // Altura do texto
+      fontFamily: 'Roboto',
+      fontSize: 20,        
+      fontWeight: '400',   
+      lineHeight: 23.44,   // Altura da linha
+      textAlign: 'left',  
+      color: '#A9A9A9',    
+    },
+    
+    
     containerBotao: {
       padding: 15,
       borderRadius: 20,

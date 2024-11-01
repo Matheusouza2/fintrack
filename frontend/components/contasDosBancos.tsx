@@ -29,19 +29,19 @@ const contasDosBancos = () => {
         <Text style={estilo.texto}>Contas</Text>
       </View>
 
-      <ContaBanco 
+      <ContaBanco
         imagens={require("../assets/imagens/Banco_do_Brasil.png")}
         nome="Banco do Brasil"
         valor={dinheiro}
       />
-      
-      <ContaBanco 
+
+      <ContaBanco
         imagens={require("../assets/imagens/Nubank.png")}
         nome="Nubank"
         valor={dinheiro}
       />
-      
-      <ContaBanco 
+
+      <ContaBanco
         imagens={require("../assets/imagens/Inter.jpg")}
         nome="Inter"
         valor={dinheiro}
@@ -51,4 +51,3 @@ const contasDosBancos = () => {
 };
 
 export default contasDosBancos;
-      
