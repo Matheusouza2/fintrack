@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Image, Text, View } from 'react-native';
 import { styles } from '../../assets/styles/listarTransferencias';
 
+
 const Item = ({ origemNome, destinoNome, valor, data }) => {
   return (
     <View style={styles.container_dados}>
