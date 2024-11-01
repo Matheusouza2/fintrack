@@ -1,20 +1,37 @@
 import { post } from "../../services/axios"
-import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 import React, { useState } from 'react';
 import { Link } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { styles } from "../../assets/styles/novaTransferencia";
-
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const novaTransferencia = () => {
 
   const [descricao, setDescricao] = useState('');
-  const [data, setData] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [data, setData] = useState('dd/mm/aaaa')
   const [tipoTransferencia, setTipoTransferencia] = useState('Não recorrente');
   const [contaOrigem, setContaOrigem] = useState('');
   const [contaDestino, setContaDestino] = useState('');
   const [valor, setValor] = useState("0,00");
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate:any) => {
+    setShow(false)
+    const currentDate = selectedDate || data;
+    setData(currentDate);
+    const day = String(currentDate.getDate()).padStart(2, '0');      // Dia (1-31), padStart adiciona zero à esquerda se necessário
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Mês (0-11), somando +1 e padStart para ter 2 dígitos
+    const year = currentDate.getFullYear();  
+    setData( `${day}/${month}/${year}`)
+    setShow(Platform.OS === 'ios');
+  };
+
+  const showDatePicker = () => {
+    setShow(true);
+  };
 
   const mudar = (elm:any) => {
     elm = elm.replace("R","").replace("$","").replace(".","").replace(",","")
@@ -34,10 +51,9 @@ const novaTransferencia = () => {
       "tipoTransferencia": tipoTransferencia,
       "contaOrigem": contaOrigem,
       "contaDestino": contaDestino,
-      "valor": valor
+      "valor": parseFloat(valor.replace("R$","").replace(",","."))
     }
 
-    dados.valor = parseFloat(dados.valor.replace("R$","").replace(",","."))
     if ( dados.contaDestino && dados.contaOrigem && dados.descricao && dados.data && dados.tipoTransferencia && dados.valor)
       post("/transferencia", dados)
   }
@@ -56,25 +72,24 @@ const novaTransferencia = () => {
     
     setValor(valorFormatado);
   };
-  //retorna a view e coloca o valor inicial como 0 e exibe o texto de nova transferência
 
   return (<View style={styles.container}>
-
+ 
       <View style={styles.containerCabecalho}>
-        <Link href="/listarTransferencias">
+        <Link href="/listarTransferencias" style={{height:"100%",justifyContent:"center"}}>
           <Image
             source={require('../../assets/icons/iconeVoltar.png')}
             style={styles.setaRetroceder}
             />
           </Link>
         <Text style={styles.titulo}>Nova Transferência</Text>
-      </View>
+      </View> 
 
       <TextInput
-        style={styles.campoValorEntrada}
-        keyboardType="numeric"
-        value={`R$ ${valor}`}
-        onChangeText={handleMudancaValor}
+          style={styles.campoValorEntrada}
+          keyboardType="numeric"
+          value={`R$ ${valor}`}
+          onChangeText={handleMudancaValor}
       />
 
       <TextInput
@@ -86,13 +101,34 @@ const novaTransferencia = () => {
       />
 
       <TextInput
-        style={styles.input}
-        placeholder="Data"  //placeholder é um texto temporário
+        style={styles.campoEntrada}
+        placeholder="Descrição"
+        placeholderTextColor="#A9A9A9"
+        value={descricao}
+        onChangeText={setDescricao}
+      />
+
+      <TouchableOpacity style={{width:"98%",justifyContent:"center", alignItems:"center"}} onPress={showDatePicker}>
+        <TextInput
+        style={styles.campoEntrada}
+        placeholder="Descrição"
         placeholderTextColor="#A9A9A9"
         value={data}
-        onChangeText={setData}
-      />
-      
+        editable={false}
+        onFocus={Keyboard.dismiss}
+        />
+      </TouchableOpacity>
+
+      {show && (
+        <DateTimePicker
+          value={date}
+          mode="date" // ou "time" para selecionar hora
+          display="default"
+          onChange={onChange}
+        />
+      )}
+
+
       <Picker
         selectedValue={tipoTransferencia}
         onValueChange={(itemValue, itemIndex) => setTipoTransferencia(itemValue)}
@@ -129,38 +165,5 @@ const novaTransferencia = () => {
 
     </View>);
 }
-
-const styless = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#F5F5F5',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  value: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#007AFF',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: '#CCC',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-    backgroundColor: '#FFF',
-  },
-  picker: {
-    height: 50,
-    marginBottom: 20,
-  },
-});
 
 export default novaTransferencia;

@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     titulo: {
       fontSize: 25,
       textAlign: 'center',
-      marginBottom: 20,
+      width:"90%",
       color: '#0188EA',
     },
     input: {
@@ -26,20 +26,21 @@ export const styles = StyleSheet.create({
     },
     containerCabecalho: {
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "flex-start",
       width: '100%',
     },
   
     setaRetroceder: {
-      position: 'absolute',
-      left: -60,
-      bottom: -20,
-      width: 25,
-      height: 25,
+      alignItems:"center",
+      alignContent:"center",
+      alignSelf:"flex-start",
+      position:"absolute",
+      width: 20,
+      height: 20,
       tintColor: '#0188EA',
       resizeMode: 'contain',
-      marginBottom: 20,
+      // marginBottom: 20,
     },
   
     campoValorEntrada: {
@@ -47,10 +48,8 @@ export const styles = StyleSheet.create({
       color: '#0188EA',
       borderBottomWidth: 1,
       borderBottomColor: '#0188EA',
-      height: 40,
       fontSize: 40,
-      padding: 40,
-      marginBottom: 30,
+      marginVertical: 30,
       width: '95%',
     },
   
@@ -71,6 +70,9 @@ export const styles = StyleSheet.create({
       height: 50,
       color: '#A9A9A9',
       marginBottom: 20, // Define uma margem vertical uniforme para o Picker também
+      borderBottomWidth: 1,
+      borderColor: '#0188EA',
+      fontSize: 15
     },
   
     containerBotao: {
