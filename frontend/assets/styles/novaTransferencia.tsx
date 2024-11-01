@@ -66,10 +66,8 @@ export const styles = StyleSheet.create({
   
     picker: {
       width: '95%',
-      marginTop: 40,
       height: 50,
       color: '#A9A9A9',
-      marginBottom: 20, // Define uma margem vertical uniforme para o Picker também
       borderBottomWidth: 1,
       borderColor: '#0188EA',
       fontSize: 15
