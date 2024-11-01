@@ -99,7 +99,6 @@ export async function alterarContas(req, res) {
   }
 }
 
-
 export function listarContas(req, res) {}
 
 export async function excluirContas(req, res) {
@@ -133,7 +132,7 @@ function validarEntrada(reg, valor){
   return reg.test(valor);
 }
 
-const listarContasPorUsuarioId = async (req, res) => {
+export async function listarContasPorUsuarioId (req, res) {
   const { usuarioId } = req.params;
 
   try {
