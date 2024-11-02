@@ -8,10 +8,12 @@ const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     // estilo do container
     container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        // flex: 1,
+        // alignItems: "center",
+        // justifyContent: "center",
         backgroundColor: "#053d6e",
+        width: 430,
+        height: 932,
     },
 
     // estilo do logo
@@ -41,13 +43,13 @@ export const styles = StyleSheet.create({
 
     // estilo do input de texto
     input: {
-        width: "80%",
-        backgroundColor: "#fff",
-        height: width * 0.1,
-        marginBottom: 30,
-        color: "#333",
+        width: 360,
+        backgroundColor: "#ffffff",
+        height: 70,
+        // marginBottom: 30,
+        // color: "#333",
         fontSize: 22,
-        borderRadius: 5,
+        borderRadius: 10,
         padding: 15,
         borderWidth: 2,
         borderColor: "#053d6e",
@@ -57,6 +59,7 @@ export const styles = StyleSheet.create({
     viewInput: {
         width: "100%",
         height: "55%",
+        top: 50,
         position: "absolute",
         alignItems: "center",
         justifyContent: "center",
@@ -66,28 +69,31 @@ export const styles = StyleSheet.create({
 
     //view que engloba o botão tudo
     viewAll: {
-        top: "20%",
-        width: "100%",
+        top: 207,
+        width: 430,
+        height: 725,
         position: "absolute",
         alignItems: "center",
         justifyContent: "center",
         alignSelf: "center",
         backgroundColor: "#d9d9d9",
         bottom: 0,
-        borderRadius: 20,
+        borderTopRightRadius: 15,
+        borderTopLeftRadius: 15,
     },
 
 
     // estilo do botão de salvar
     button: {
-        backgroundColor: "#0a2f6e",
-        width: "70%",
-        height: 55,
+        backgroundColor: "#053d6e",
+        width: 320,
+        height: 60,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 37,
+        borderRadius: 40,
         position: "absolute",
         bottom: "2%",
+        top: 600
     },
 
     // estilo do botão de perfil
@@ -141,10 +147,38 @@ export const styles = StyleSheet.create({
     voltar:{
         position: "absolute",
         resizeMode: "contain",
-        top: "1%",
-        left: "1%",
-        width: "10%",
+        top: 19,
+        left: 21,
+        width: 25,
+        height: 28,
     },
+
+    textoPerfil:{
+        width: 74,
+        height: 38,
+        top: 213,
+        left: 55,
+        fontFamily: "roboto",
+        fontSize: 32,
+        fontWeight: 400,
+        lineHeight: 37.5,
+        color: '#000000'
+
+    },
+
+    textoNome:{
+        
+        width: 54,
+        height: 23,
+        top: 380,
+        left: 44,
+        fontFamily: "roboto",
+        fontSize: 20,
+        fontWeight: 400,
+        lineHeight: 23.44,
+        textAlign: 'center',
+        color: '#616161',
+    }
 
     // estilo do icone de editar
 

@@ -6,7 +6,7 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.itens}>
         <Image
-          source={require("../../assets/images/logo.png")}
+          source={require("@/assets/imagens/logo.png")}
         />
         <View style={styles.circuloPai}>
 
