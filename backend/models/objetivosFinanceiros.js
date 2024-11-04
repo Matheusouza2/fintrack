@@ -4,8 +4,10 @@ const db = new PrismaClient();
 
 //novo objetivo financeiro
 export const criarObjetivoFinanceiro = async (dadosObjetivo) => {
-
-};
+    return await db.objetivoFinanceiro.create({
+      data: dadosObjetivo,
+    });
+  };
 
 // listar todos os objetivos financeiros
 export const listarObjetivosFinanceiros = async () => {
