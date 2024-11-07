@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { styles } from "../../assets/styles/login";
+import  styles  from "../../assets/styles/cadastroUsuario";
 
 const CadastroUsuario: React.FC = () => {
   const [nome, setNome] = useState<string>('');
@@ -30,13 +30,34 @@ const CadastroUsuario: React.FC = () => {
     setSenhaVisivel(!senhaVisivel);
   };
 
-  const salvar = () => {
+  const salvar = async () => {
     if (nome === '' || cpf === '' || email === '' || senha === '') {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
     } else if (cpf.length !== 11) {
       Alert.alert('Erro', 'O CPF deve conter exatamente 11 números.');
     } else {
-      Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+      try {
+        const response = await fetch('http://localhost:9090/usuarios', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nome,
+            cpf,
+            email,
+            senha,
+          }),
+        });
+
+        if (response.ok) {
+          Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+        } else {
+          Alert.alert('Erro', 'Falha ao cadastrar usuário.');
+        }
+      } catch (error) {
+        Alert.alert('Erro', 'Ocorreu um erro ao cadastrar o usuário.');
+      }
     }
   };
 
