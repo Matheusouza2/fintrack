@@ -87,7 +87,21 @@ export const styles = StyleSheet.create({
   textoBotaoEnviar: {
     color: "#EDEDEB",
     fontSize: 20,
-  }
+  },
+  botaoVoltar: {
+    width: 25,
+    height: 28,
+    position: 'absolute',
+    top: 22,
+    left: 25,
+    backgroundColor: '#053D6E',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconeVoltar: {
+    width: '100%',
+    height: '100%',
+  },
 });
 
 export default styles;
