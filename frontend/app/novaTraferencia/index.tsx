@@ -1,71 +1,92 @@
-import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { Link } from 'expo-router';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { styles } from "../../assets/styles/novaTransferencia";
+import { post } from "../../services/axios";
+import { TextInputMask } from 'react-native-masked-text';
+import { styles } from '../../assets/styles/novaTraferencia';
 
-
-
-const novaTransferencia = () => {
-
-  const [valor, setValor] = useState('0,00');
+const novaTraferencia = () => {
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState('');
   const [tipoTransferencia, setTipoTransferencia] = useState('Não recorrente');
   const [contaOrigem, setContaOrigem] = useState('');
   const [contaDestino, setContaDestino] = useState('');
+  const [valor, setValor] = useState("R$ ");
+  const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    const hoje = new Date();
+    const dataFormatada = `${hoje.getDate().toString().padStart(2, '0')}/${(hoje.getMonth() + 1).toString().padStart(2, '0')}/${hoje.getFullYear()}`;
+    setData(dataFormatada);
+  }, []);
 
-  const handleMudancaValor = (text: string) => {
-
-    if (text === '') {
-      setValor('0,00');
-      return;
+  const mudar = (elm) => {
+    elm = elm.replace("R", "").replace("$", "").replace(".", "").replace(",", "");
+    if (elm.length >= 3) {
+      let part1 = elm.slice(0, -2);
+      let part2 = elm.slice(-2);
+      elm = part1 + "," + part2;
     }
-
-    const entradaTratada = text.replace(/\D/g, '');
-    const quantia = parseFloat(entradaTratada) / 100;
-    const valorFormatado = quantia.toFixed(2).replace('.', ',');
-
-    setValor(valorFormatado);
+    setValor("R$" + elm);
   };
 
+  const validarData = (data) => {
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    return regex.test(data);
+  };
+
+  const handleDataChange = (data) => {
+    setData(data);
+    if (!validarData(data)) {
+      setErrorMessage('Por favor, insira uma data válida no formato DD/MM/YYYY.');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
+  const salvar = () => {
+    let dados = {
+      "descricao": descricao,
+      "data": data,
+      "tipoTransferencia": tipoTransferencia,
+      "contaOrigem": contaOrigem,
+      "contaDestino": contaDestino,
+      "valor": valor
+    };
+
+    dados.valor = parseFloat(dados.valor.replace("R$", "").replace(",", "."));
+    if (dados.contaDestino && dados.contaOrigem && dados.descricao && dados.data && dados.tipoTransferencia && dados.valor)
+      post("/transferencia", dados);
+  };
 
   return (
     <View style={styles.container}>
-
-      <View style={styles.containerCabecalho}>
-        <Link href="/listarTransferencias">
-          <Image
-            source={require('../../assets/icons/iconeVoltar.png')}
-            style={styles.setaRetroceder}
-          />
-          </Link>
-        <Text style={styles.titulo}>Nova Transferência</Text>
-      </View>
-
+      <Text style={styles.title}>Nova Transferência</Text>
       <TextInput
-        style={styles.campoValorEntrada}
-        keyboardType="numeric"
-        value={`R$ ${valor}`}
-        onChangeText={handleMudancaValor}
+        style={styles.value}
+        value={valor}
+        onChangeText={(valor) => mudar(valor)}
+        keyboardType='numeric'
       />
 
       <TextInput
-        style={styles.campoEntrada}
+        style={styles.input}
         placeholder="Descrição"
-        placeholderTextColor="#A9A9A9"
         value={descricao}
         onChangeText={setDescricao}
       />
 
-      <TextInput
-        style={styles.campoEntrada}
+      <TextInputMask
+        type={'datetime'}
+        options={{
+          format: 'DD/MM/YYYY'
+        }}
+        style={styles.input}
         placeholder="Data"
-        placeholderTextColor="#A9A9A9"
         value={data}
-        onChangeText={setData}
+        onChangeText={handleDataChange}
       />
+      {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
       <Picker
         selectedValue={tipoTransferencia}
@@ -78,30 +99,21 @@ const novaTransferencia = () => {
       </Picker>
 
       <TextInput
-        style={styles.campoEntrada}
+        style={styles.input}
         placeholder="Conta Origem"
-        placeholderTextColor="#A9A9A9"
         value={contaOrigem}
         onChangeText={setContaOrigem}
       />
 
       <TextInput
-        style={styles.campoEntrada}
+        style={styles.input}
         placeholder="Conta Destino"
-        placeholderTextColor="#A9A9A9"
         value={contaDestino}
         onChangeText={setContaDestino}
       />
-
-      <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botaoSalvar}>
-            <Text style={styles.textoBotao}>Salvar</Text>
-        </TouchableOpacity>
-      </View>
-
+      <Button title="Salvar" onPress={() => salvar()} />
     </View>
   );
 };
 
-
-export default novaTransferencia;
+export default novaTraferencia;
