@@ -11,29 +11,73 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { styles } from "../../assets/styles/novaConta.style";
+import axios from "axios";
 
 export default function Index() {
   const [nome, setNome] = useState("");
   const [saldoInicial, setSaldoInicial] = useState("");
   const [chequeEspecial, setChequeEspecial] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [visibilidadeModal, setVisibilidadeModal] = useState(false);
-
-  const opcoes = [
-    { label: "Opção 1", value: "option1" },
-    { label: "Opção 2", value: "option2" },
-    { label: "Opção 3", value: "option3" },
+  const [visibilidadeModal1, setVisibilidadeModal1] = useState(false);
+  const [visibilidadeModal2, setVisibilidadeModal2] = useState(false);
+  const [selecao1, setSelecao1] = useState("");
+  const [selecao2, setSelecao2] = useState("");
+  
+// ajustar nomes opcoes1 e opcoes2 de acordo com o real significado dentro da aplicações, correção futura!!
+  const opcoes1 = [
+    { label: "Opção 1", value: "1" },
+    { label: "Opção 2", value: "2" },
+    { label: "Opção 3", value: "3" },
   ];
 
-  const handleSalvar = () => {
-    console.log("Nome:", nome);
-    console.log("Saldo inicial:", saldoInicial);
-    console.log("Cheque especial:", chequeEspecial);
-    console.log("Categoria:", categoria);
+  const opcoes2 = [
+    { label: "Opção a", value: "1" },
+    { label: "Opção b", value: "2" },
+    { label: "Opção c", value: "3" },
+  ];
+
+  const handleSalvar = async () => {
+    const dados = {
+      agencia: selecao1,
+      conta: nome,
+      saldoInicial: parseFloat(saldoInicial),
+      valorChequeEspecial: parseFloat(chequeEspecial), 
+      categoria: categoria,
+      conta_banco: {
+        connect: { id: parseInt(selecao2)},
+      },
+    };
+
+
+    try {
+      const response = await axios.post(
+        "http://localhost:9090/api/contas",
+        dados,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Conta criada com sucesso:", response.data);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        console.error("Erro ao criar conta:", error.response.data.message);
+      } else {
+        console.error("Erro na chamada da API:", error);
+      }
+    }
   };
 
-  const handleSelecionar = (value: React.SetStateAction<string>) => {
-    setVisibilidadeModal(false);
+  const handleSelecionar1 = (value: React.SetStateAction<string>) => {
+    setSelecao1(value);
+    setVisibilidadeModal1(false);
+  };
+
+  const handleSelecionar2 = (value: React.SetStateAction<string>) => {
+    setSelecao2(value);
+    setVisibilidadeModal2(false);
   };
 
   return (
@@ -68,7 +112,7 @@ export default function Index() {
               </View>
               <View style={styles.paiBotaoDropdown}>
                 <TouchableOpacity
-                  onPress={() => setVisibilidadeModal(true)}
+                  onPress={() => setVisibilidadeModal1(true)}
                   style={styles.botaoDropdown}
                 >
                   <Text></Text>
@@ -105,7 +149,7 @@ export default function Index() {
               </View>
               <View style={styles.paiBotaoDropdown}>
                 <TouchableOpacity
-                  onPress={() => setVisibilidadeModal(true)}
+                  onPress={() => setVisibilidadeModal2(true)}
                   style={styles.botaoDropdown}
                 >
                   <Text></Text>
@@ -133,17 +177,43 @@ export default function Index() {
 
       <Modal
         transparent={true}
-        visible={visibilidadeModal}
-        onRequestClose={() => setVisibilidadeModal(false)}
+        visible={visibilidadeModal1}
+        onRequestClose={() => setVisibilidadeModal1(false)}
       >
         <View style={styles.containerModal}>
           <View style={styles.conteudoModal}>
             <FlatList
-              data={opcoes}
+              data={opcoes1}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
                 <TouchableHighlight
-                  onPress={() => handleSelecionar(item.value)}
+                  onPress={() => handleSelecionar1(item.value)}
+                  underlayColor="#ddd"
+                >
+                  <View style={styles.opcao}>
+                    <Text style={styles.textoOpcao}>{item.label}</Text>
+                  </View>
+                </TouchableHighlight>
+              )}
+            />
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal para o Segundo Select */}
+      <Modal
+        transparent={true}
+        visible={visibilidadeModal2}
+        onRequestClose={() => setVisibilidadeModal2(false)}
+      >
+        <View style={styles.containerModal}>
+          <View style={styles.conteudoModal}>
+            <FlatList
+              data={opcoes2}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item }) => (
+                <TouchableHighlight
+                  onPress={() => handleSelecionar2(item.value)}
                   underlayColor="#ddd"
                 >
                   <View style={styles.opcao}>

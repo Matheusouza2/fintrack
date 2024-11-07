@@ -6,7 +6,7 @@ import { Button } from "react-native";
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
 
       {/* Declaração de rota e edição de cabeçalho*/ }
