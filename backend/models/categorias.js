@@ -23,7 +23,17 @@ export const CriarCategoria = async (data) => {
   }
 };
 
-export const ListarCategorias = () => {}
+export const ListarCategorias = async () => {
+  try {
+    // Busca todas as categorias do banco de dados
+    const categorias = await db.categoria.findMany();
+    return categorias;
+  } catch (error) {
+    console.error("Erro ao listar categorias:", error);
+    throw error;  // Retorna o erro para o controlador lidar com ele
+  }
+};
+
 
 export const AlterarCategoria = async (idCategoria, alteracoes) => {
     try {  
