@@ -13,26 +13,34 @@ export const styles = StyleSheet.create({
     titulo: {
       fontSize: 25,
       textAlign: 'center',
-      marginBottom: 20,
+      width:"90%",
       color: '#0188EA',
     },
-  
+    input: {
+      height: 40,
+      borderColor: '#CCC',
+      borderWidth: 1,
+      marginBottom: 20,
+      paddingHorizontal: 10,
+      backgroundColor: '#FFF',
+    },
     containerCabecalho: {
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "flex-start",
       width: '100%',
     },
   
     setaRetroceder: {
-      position: 'absolute',
-      left: -60,
-      bottom: -20,
-      width: 25,
-      height: 25,
+      alignItems:"center",
+      alignContent:"center",
+      alignSelf:"flex-start",
+      position:"absolute",
+      width: 20,
+      height: 20,
       tintColor: '#0188EA',
       resizeMode: 'contain',
-      marginBottom: 20,
+      // marginBottom: 20,
     },
   
     campoValorEntrada: {
@@ -40,10 +48,8 @@ export const styles = StyleSheet.create({
       color: '#0188EA',
       borderBottomWidth: 1,
       borderBottomColor: '#0188EA',
-      height: 40,
       fontSize: 40,
-      padding: 40,
-      marginBottom: 30,
+      marginVertical: 30,
       width: '95%',
     },
   
@@ -59,13 +65,12 @@ export const styles = StyleSheet.create({
     },
   
     picker: {
-      width: 360,          // Largura especificada no Figma
-      height: 70,          // Altura especificada no Figma
-      borderBottomWidth: 2, // Borda inferior de 2px
-      borderBottomColor: '#0188EA',  // Cor da borda inferior
-      opacity: 1,          
-      color: '#A9A9A9',    // Cor do texto dentro do Picker
-      marginBottom: 20,    // Margem inferior, para espaçamento uniforme
+      width: '95%',
+      height: 50,
+      color: '#A9A9A9',
+      borderBottomWidth: 1,
+      borderColor: '#0188EA',
+      fontSize: 15
     },
     
     pickerItem: {
