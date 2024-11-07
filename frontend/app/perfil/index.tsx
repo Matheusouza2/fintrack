@@ -26,14 +26,14 @@ export default function App() {
                 </TouchableOpacity>    
 
                 {/* texto do perfil */}
-                <Text style={{...texto, position: "absolute", alignSelf: "center", top: "110%"}}>Perfil</Text>
+                <Text style={styles.textoPerfil}>Perfil</Text>
                 </TouchableOpacity>
 
 
         {/* view que engloba os inputs */}
             <View style={styles.viewInput}>
             {/* input do nome */}
-            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%'}}>nome</Text>
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>Nome</Text>
             <TextInput 
                 textContentType="username"
                 autoCapitalize="none"
@@ -43,7 +43,7 @@ export default function App() {
             />
 
             {/* input do email */}
-            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%'}}>Email</Text>
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>Email</Text>
             <TextInput 
                 textContentType="emailAddress"
                 autoCapitalize="none"
@@ -53,7 +53,7 @@ export default function App() {
             />
 
             {/* input do cpf */}
-            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%'}}>CPF</Text>
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>CPF</Text>
             <TextInput 
                 keyboardType="numeric"
                 textContentType="username"
