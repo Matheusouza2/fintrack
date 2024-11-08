@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { styles } from "../../assets/styles/configuracoes";
+import { Link } from 'expo-router';
 const Configuracoes = () => {
     return (
         <View style={styles.principalView}>
@@ -17,7 +18,9 @@ const Configuracoes = () => {
                         <Text style={styles.nomeUsuario}>Nome do Usuário</Text>
                         <Text style={styles.emailUsuario}>email@usuario.com</Text>
                         <TouchableOpacity style={styles.botaoEditarPerfil} accessibilityLabel="Editar Perfil">
-                            <Text style={styles.textoEditarPerfil}>Editar Perfil</Text>
+                            <Link href="/perfil">
+                                <Text style={styles.textoEditarPerfil}>Editar Perfil</Text>
+                            </Link>
                         </TouchableOpacity>
                     </View>
                 </View>
