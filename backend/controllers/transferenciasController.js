@@ -1,3 +1,5 @@
+import { ExcluirTransferencia } from '../models/transferencias';
+
 // Cria regra de negócio para salvar transferência;
 export async function CriarTransferencia(req, res) { 
     try {
@@ -65,7 +67,24 @@ export async function AlterarTransferencia(id){
 }
   
 // Função para deletar uma transferência
-export async function DeletarTransferencia(id) { 
+export async function DeletarTransferencia(req, res) {
+    try {
+        const { id } = req.params;
+
+        const transferenciaExcluida = await ExcluirTransferencia(id);
+
+        if (transferenciaExcluida) {
+            return res.status(200).send({
+                message: "Transferência excluída com sucesso.",
+                transferenciaExcluida
+            });
+        } else {
+            return res.status(404).send({ message: "Transferência não encontrada." });
+        }
+    } catch (error) {
+        console.error("Erro ao excluir transferência:", error);
+        return res.status(500).send({ message: "Erro interno do servidor." });
+    }
 }
   
 // Função para listar todas as transferências
