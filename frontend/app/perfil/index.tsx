@@ -43,8 +43,8 @@ export default function App() {
                         <Image source={require('../../assets/icons/edit.png')} style={styles.editImage}/>
                     </TouchableOpacity>    
 
-                    {/* texto do perfil */}
-                    <Text style={{...texto, position: "absolute", alignSelf: "center", top: "110%"}}>Perfil</Text>
+                {/* texto do perfil */}
+                <Text style={styles.textoPerfil}>Perfil</Text>
                 </TouchableOpacity>
 
                 {/* view que engloba os inputs */}
@@ -59,34 +59,44 @@ export default function App() {
                         style={styles.input}
                     />
 
-                    {/* input do email */}
-                    <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%'}}>Email</Text>
-                    <TextInput 
-                        textContentType="emailAddress"
-                        autoCapitalize="none"
-                        autoComplete="email"
-                        autoCorrect={false}
-                        style={styles.input}
-                    />
+        {/* view que engloba os inputs */}
+            <View style={styles.viewInput}>
+            {/* input do nome */}
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>Nome</Text>
+            <TextInput 
+                textContentType="username"
+                autoCapitalize="none"
+                autoComplete="username"
+                autoCorrect={false}
+                style={styles.input}
+            />
 
-                    {/* input do CPF */}
-                    <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%'}}>CPF</Text>
-                    <TextInput 
-                        keyboardType="numeric"
-                        textContentType="username"
-                        autoComplete="username"
-                        autoCorrect={false}
-                        style={styles.input}
-                        value={cpf}
-                        onChangeText={handleCpfChange}
-                        maxLength={14} // (formato 000.000.000-00)
-                    />
-                </View>
+            {/* input do email */}
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>Email</Text>
+            <TextInput 
+                textContentType="emailAddress"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect={false}
+                style={styles.input}
+            />
 
-                {/* botão de salvar */}
-                <TouchableOpacity style={styles.button}> 
-                    <Text style={{...texto, color: '#fff'}}>Salvar</Text>
-                </TouchableOpacity>
+            {/* input do cpf */}
+            <Text style={{...texto, color: 'grey', alignSelf: 'flex-start', marginLeft: '10%', fontSize:20, fontFamily:'roboto', fontWeight:400}}>CPF</Text>
+            <TextInput 
+                keyboardType="numeric"
+                textContentType="username"
+                autoComplete="username"
+                autoCorrect={false}
+                style={styles.input}
+            />
+        </View>
+
+
+            {/* botão de slavar */}
+            <TouchableOpacity style={styles.button}> 
+                <Text style={{...texto, color: '#fff'}}>Salvar</Text>
+            </TouchableOpacity>
 
             </View>
         </KeyboardAvoidingView>

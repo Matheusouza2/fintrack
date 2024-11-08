@@ -16,11 +16,11 @@ export default function Index() {
         paddingHorizontal: 10
       }}
     >
-      <DespesasPorCategoria />
-      <Link href="/splashScreen">Splash</Link>
-      <Link href="/novaConta">Nova Conta</Link>
+      {/* <DespesasPorCategoria /> */}
+      {/* <Link href="/splashScreen">Splash</Link> */}
+      {/* <Link href="/novaConta">Nova Conta</Link> */}
       <Link href="/novaTraferencia">Nova Transferencia</Link>
-      <FinancialIconsBar/>
+      {/* <FinancialIconsBar/> */}
 
     </View>
     
