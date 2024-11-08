@@ -3,12 +3,15 @@ import { Modal, Text, TextInput, TouchableOpacity, View, Alert } from 'react-nat
 import { ColorPicker } from 'react-native-color-picker';
 import { styles } from "../../assets/styles/novaCategoria";
 import axios from "axios";
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const CriarCategoria: React.FC = () => {
   const [descricao, setDescricao] = useState<string>('');
   const [tipo, setTipo] = useState<string>('');
   const [cor, setCor] = useState<string>('#ffffff'); 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const navigation = useNavigation();
 
   const abrirPaletaDeCores = () => {
     setModalVisible(true);
@@ -38,16 +41,23 @@ const CriarCategoria: React.FC = () => {
       }
   };
 
+  const handleVoltar = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.botaoVoltar} onPress={handleVoltar}>
+        <Ionicons name="arrow-back" size={24} color="white" style={styles.iconeVoltar} />
+      </TouchableOpacity>
+
       <Text style={styles.header}>Criar Categoria</Text>
 
       <TextInput
         style={styles.input}
         placeholder="Descrição"
         value={descricao}
-        // onChangeText={setDescricao}
+        onChangeText={setDescricao}
       />
 
       <TextInput

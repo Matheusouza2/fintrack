@@ -1,8 +1,9 @@
-/*Importa o PrismaClient do pacote @prisma/client
-Cria uma nova instância do PrismaClient
- */
-import { PrismaClient } from '@prisma/client'
+import express from 'express';
+import { PrismaClient } from '@prisma/client';
+
 const prisma = new PrismaClient();
+const app = express();
+app.use(express.json());
 
 /*Função assíncrona para criar um novo usuário 
  Usa o método create do Prisma para adicionar um novo usuário ao banco de dados
@@ -10,7 +11,7 @@ const prisma = new PrismaClient();
 export async function criarUsuario(data) {
   return await prisma.usuario.create({
     data,
-  })
+  });
 }
 
 /* 
@@ -45,6 +46,7 @@ export async function atualizarUsuario(id, data) {
     data,
   });
 }
+
 /*Função assíncrona para deletar um usuário pelo ID
 Usa o método delete do Prisma para remover um usuário específico do banco de dados
 */
@@ -52,3 +54,17 @@ export async function deletarUsuario(id) {
   return await prisma.user.delete({ where: { id: Number(id) } });
 }
 
+// Adicionando a rota para criar um novo usuário
+app.post('/usuarios', async (req, res) => {
+  try {
+    const novoUsuario = await criarUsuario(req.body);
+    res.status(201).json(novoUsuario);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao criar usuário' });
+  }
+});
+
+// Iniciando o servidor
+app.listen(9090, () => {
+  console.log('Servidor rodando na porta 9090');
+});
