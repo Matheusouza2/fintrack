@@ -2,6 +2,7 @@ import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View, A
 import { styles } from "../../assets/styles/login";
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "expo-router";
 
 export default function App() {
     const texto = styles.text;
@@ -83,7 +84,9 @@ export default function App() {
 
             {/* Texto de "Esqueceu a Senha" */}
             <TouchableOpacity style={styles.esqueceu}>
-                <Text style={{ ...texto, color: '#56aaff', textDecorationLine: "underline" }}>Esqueceu sua senha?</Text>
+                <Link href="/RecuperarSenha">
+                    <Text style={{ ...texto, color: '#56aaff', textDecorationLine: "underline" }}>Esqueceu sua senha?</Text>
+                </Link>
             </TouchableOpacity>
 
         </KeyboardAvoidingView>
