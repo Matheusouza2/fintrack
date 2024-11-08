@@ -22,8 +22,7 @@ export default function Index() {
   const [visibilidadeModal2, setVisibilidadeModal2] = useState(false);
   const [selecao1, setSelecao1] = useState("");
   const [selecao2, setSelecao2] = useState("");
-  
-// ajustar nomes opcoes1 e opcoes2 de acordo com o real significado dentro da aplicações, correção futura!!
+
   const opcoes1 = [
     { label: "Opção 1", value: "1" },
     { label: "Opção 2", value: "2" },
@@ -36,18 +35,31 @@ export default function Index() {
     { label: "Opção c", value: "3" },
   ];
 
+  
+  const handleSaldoInicialChange = (text) => {
+    
+    const onlyNumbers = text.replace(/\D/g, '');
+
+    
+    const formattedSaldo = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(parseFloat(onlyNumbers) / 100); 
+
+    setSaldoInicial(formattedSaldo); 
+  };
+
   const handleSalvar = async () => {
     const dados = {
       agencia: selecao1,
       conta: nome,
-      saldoInicial: parseFloat(saldoInicial),
-      valorChequeEspecial: parseFloat(chequeEspecial), 
+      saldoInicial: parseFloat(saldoInicial.replace(/[R$\.,]/g, '')) / 100,
+      valorChequeEspecial: parseFloat(chequeEspecial),
       categoria: categoria,
       conta_banco: {
-        connect: { id: parseInt(selecao2)},
+        connect: { id: parseInt(selecao2) },
       },
     };
-
 
     try {
       const response = await axios.post(
@@ -65,17 +77,17 @@ export default function Index() {
       if (axios.isAxiosError(error) && error.response) {
         console.error("Erro ao criar conta:", error.response.data.message);
       } else {
-        console.error("Erro na chamada da API:", error);
+        console.error("Erro na chamada da API:", error.message);
       }
     }
   };
 
-  const handleSelecionar1 = (value: React.SetStateAction<string>) => {
+  const handleSelecionar1 = (value) => {
     setSelecao1(value);
     setVisibilidadeModal1(false);
   };
 
-  const handleSelecionar2 = (value: React.SetStateAction<string>) => {
+  const handleSelecionar2 = (value) => {
     setSelecao2(value);
     setVisibilidadeModal2(false);
   };
@@ -124,14 +136,17 @@ export default function Index() {
               </View>
             </View>
           </View>
+
+          {/* Input para Saldo Inicial com máscara de moeda */}
           <TextInput
             style={styles.input}
             value={saldoInicial}
-            onChangeText={setSaldoInicial}
+            onChangeText={handleSaldoInicialChange}
             placeholder="Saldo inicial"
             placeholderTextColor={"#053D6E69"}
             keyboardType="numeric"
           />
+
           <TextInput
             style={styles.input}
             value={chequeEspecial}

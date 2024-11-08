@@ -1,38 +1,58 @@
-//controller de transacoes do usuario cadastrar, alterar, listar, excluir e mostrar(com base nos id)
+import { cadastrarTransacao } from '../models/transacaoModel';
 
 /**
- * lista todas as transacoes de um usuario.
+ * Lista todas as transações de um usuário.
  */
-export const listarTransacoesPorUsuario = (req, res) => {}
+export const listarTransacoesPorUsuario = (req, res) => {
 
+};
 
 /**
- * mostra uma transacao especifica de um usuario com base no id
+ * Mostra uma transação específica de um usuário com base no ID.
  */
-export const mostrarTransacaoPorUsuario = (req, res) => {}
+export const mostrarTransacaoPorUsuario = (req, res) => {
 
+};
 
 /**
- * cadastra uma nova transacao para um usuario especifico com base no id
+ * Cadastra uma nova transação para um usuário específico com base no ID.
  */
-export const cadastrarTransacaoPorUsuario = (req, res) => {}
+export const cadastrarTransacaoPorUsuario = async (req, res) => {
+  const { id } = req.params; // ID do usuário
+  const { tipo, valor, descricao } = req.body;
 
+  // Verificação dos dados obrigatórios
+  if (!tipo || !valor) {
+    return res.status(400).json({ message: 'Tipo e valor são obrigatórios.' });
+  }
+
+  try {
+    const novaTransacao = await cadastrarTransacao(id, { tipo, valor, descricao });
+    res.status(201).json(novaTransacao);
+  } catch (error) {
+    console.error('Erro ao cadastrar transação:', error);
+    res.status(500).json({ message: 'Erro ao cadastrar transação.' });
+  }
+};
 
 /**
- * faz alteracoes nas transacoes de um usuario com base no id
+ * Faz alterações nas transações de um usuário com base no ID.
  */
-export const alterarTransacaoPorUsuario = (req, res) => {}
+export const alterarTransacaoPorUsuario = (req, res) => {
 
+};
 
-/*
- * exclui uma transacao de um usuario com base no id
+/**
+ * Exclui uma transação de um usuário com base no ID.
  */
-export const excluirTransacaoPorUsuario = (req, res) => {}
+export const excluirTransacaoPorUsuario = (req, res) => {
 
-// module.exports = {
-//     listarTransacoesPorUsuario,
-//     mostrarTransacaoPorUsuario,
-//     cadastrarTransacaoPorUsuario,
-//     alterarTransacaoPorUsuario,
-//     excluirTransacaoPorUsuario,
-// };
+};
+
+export default {
+  listarTransacoesPorUsuario,
+  mostrarTransacaoPorUsuario,
+  cadastrarTransacaoPorUsuario,
+  alterarTransacaoPorUsuario,
+  excluirTransacaoPorUsuario,
+};
