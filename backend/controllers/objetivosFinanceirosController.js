@@ -1,4 +1,7 @@
-import { listarObjetivosFinanceiros } from "../models/objetivosFinanceiros"
+import {
+  listarObjetivosFinanceiros,
+  atualizarObjetivoFinanceiroModel,
+} from "../models/objetivosFinanceiros";
 
 const db = new PrismaClient();
 
@@ -52,7 +55,7 @@ export const atualizarObjetivoFinanceiro = async (req, res) => {
       }
       objetoFinanceiro.saldo = saldo;
  
-      await atualizarObjetivoFinanceiro(conta, objetoFinanceiro);
+      await atualizarObjetivoFinanceiroModel(conta, objetoFinanceiro);
  
       res.status(200).json({ mensagem: 'Objeto financeiro atualizado com sucesso.', objetoFinanceiro });
  
