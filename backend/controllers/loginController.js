@@ -1,10 +1,10 @@
 import { validarCredenciais } from "../models/loginModel.js";
 
 export async function loginUsuario(request, response) {
-    const { email, senha } = request.body;
+    const { cpf, senha } = request.body;
 
     try {
-        const usuario = await validarCredenciais(email, senha);
+        const usuario = await validarCredenciais(cpf, senha);
 
         if (usuario) {
             return response.status(200).json({ message: "Login bem-sucedido", usuario });
