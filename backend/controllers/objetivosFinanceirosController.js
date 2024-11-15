@@ -1,4 +1,5 @@
-import { listarObjetivosFinanceiros } from "../models/objetivosFinanceiros"
+import { PrismaClient } from "@prisma/client";
+import { listarObjetivosFinanceiros } from "../models/objetivosFinanceiros.js"
 
 const db = new PrismaClient();
 
