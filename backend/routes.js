@@ -47,10 +47,12 @@ routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
 routes.post("/usuarios/", usuarioController.cadastrarUsuario);
 
+routes.put("/usuarios/:id", usuarioController.atualizarUsuario);
+
 /*
  Rotas para transferencia
 */
-// Endpoints objetivos financeiros
+// Endpoints objetivos financeir""os
 routes.get(
   "/objetivosfinanceiros",
   objetivosFinanceirosController.lerObjetivoFinanceiro

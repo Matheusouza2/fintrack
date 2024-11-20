@@ -1,11 +1,33 @@
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, Image, View} from "react-native";
 import { styles } from "../../assets/styles/perfil";
-import React from "react";
+import React, {useState}from "react";
 
-export default function App() {
+export default function App({route}) {
     // texto padrão improtado como constante
     const texto = styles.text;
 
+    // Pegando o ID do usuário passado via parâmetro
+    const { id } = route.params;
+
+    // Estados para armazenar os inputs
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
+
+    const salvarDados = async () => {
+        try {
+          const response = await axios.put(`http://localhost:9090/api/usuarios/${id}`, {
+            nome,
+            email,
+            cpf,
+          });
+          // Sucesso
+          Alert.alert("Sucesso", "Dados atualizados com sucesso!");
+        } catch (error) {
+          console.error(error);
+          Alert.alert("Erro", "Não foi possível atualizar os dados.");
+        }
+      };
     return (
         
         // container
@@ -40,6 +62,8 @@ export default function App() {
                 autoComplete="username"
                 autoCorrect={false}
                 style={styles.input}
+                value={nome}
+                onChangeText={setNome}
             />
 
             {/* input do email */}
@@ -50,6 +74,8 @@ export default function App() {
                 autoComplete="email"
                 autoCorrect={false}
                 style={styles.input}
+                value={email}
+                onChangeText={setEmail}
             />
 
             {/* input do cpf */}
@@ -60,12 +86,14 @@ export default function App() {
                 autoComplete="username"
                 autoCorrect={false}
                 style={styles.input}
+                value={cpf}
+                onChangeText={setCpf}
             />
         </View>
 
 
             {/* botão de slavar */}
-            <TouchableOpacity style={styles.button}> 
+            <TouchableOpacity style={styles.button} onPress={salvarDados}> 
                 <Text style={{...texto, color: '#fff'}}>Salvar</Text>
             </TouchableOpacity>
 
