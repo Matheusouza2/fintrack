@@ -1,9 +1,17 @@
 //controller de transacoes do usuario cadastrar, alterar, listar, excluir e mostrar(com base nos id)
-
+import { Listartransacoes } from "../models/transacoes"
 /**
  * lista todas as transacoes de um usuario.
  */
-export const listarTransacoesPorUsuario = (req, res) => {}
+export async function listarTransacoesPorUsuario(req, res) {
+    try {
+        const transacao = await Listartransacoes();
+        return res.status(200).json(objetivos);  
+    } catch (error) {
+        console.error('Erro ao listar objetivos financeiros:', error);
+       return res.status(500).json({ error: 'Erro ao listar objetivos financeiros' }); 
+    }
+}
 
 
 /**
