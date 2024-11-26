@@ -82,7 +82,7 @@ export async function listarTransferencias(req, res) {
         return res.status(200).json(transferencias);
     } catch (erro) {
         console.error('Erro no controlador de transferências:', erro.message);
-        return res.status(500).json({ error: 'Erro ao listar transferências' });
+        return res.status(500).json({ erro : 'Erro ao listar transferências' });
     }
 }
   
