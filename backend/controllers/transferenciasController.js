@@ -1,3 +1,5 @@
+import { ListarTransferencias } from "../models/transferencias.js"; 
+
 // Cria regra de negócio para salvar transferência;
 export async function CriarTransferencia(req, res) { 
     try {
@@ -69,7 +71,19 @@ export async function DeletarTransferencia(id) {
 }
   
 // Função para listar todas as transferências
-export async function ListarTransferencia() { 
+export async function listarTransferencias(req, res) {
+    const contaId = req.params.id;
+
+    if (!contaId)
+        return res.status(400).json({ erro : 'O ID é obrigatório' });
+    
+    try {
+        const transferencias = await ListarTransferencias(parseInt(contaId));
+        return res.status(200).json(transferencias);
+    } catch (erro) {
+        console.error('Erro no controlador de transferências:', erro.message);
+        return res.status(500).json({ error: 'Erro ao listar transferências' });
+    }
 }
   
 // Função para mostrar uma transferência específica por ID
