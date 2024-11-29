@@ -1,3 +1,5 @@
+import { TransferenciasPorId } from "../models/transferencias";
+
 // Cria regra de negócio para salvar transferência;
 export async function CriarTransferencia(req, res) { 
     try {
@@ -73,6 +75,8 @@ export async function ListarTransferencia() {
 }
   
 // Função para mostrar uma transferência específica por ID
-export async function MostrarPorId(id) { 
+export async function MostrarPorId(req, res) {
+    const { id } = req.params
+
+    return TransferenciasPorId(id)
 }
-//4545

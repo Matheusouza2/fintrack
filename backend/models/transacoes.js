@@ -6,7 +6,18 @@ export const Criartransacoes = (dadoTranferencia) => {}
 
 export const Listartransacoes = (userId) => {}
 
-export const Alterartransacoes = (tranferenciaId, alteracoes) => {}
+export const Alterartransacoes = async (id, data) => {
+  try {
+    const updatedTransaction = await db.transacao.update({
+      where: { id },
+      data,
+    });
+
+    return updatedTransaction;
+  } catch (error) {
+    throw new Error(`Erro ao atualizar transação: ${error.message}`);
+  }
+}
 
 export const Excluirtransacoes = (tranferenciaId) => {}
 

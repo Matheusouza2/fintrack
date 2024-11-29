@@ -5,6 +5,8 @@ import * as cartaoController from "./controllers/cartaoController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
 import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
+import * as transacoesController from "./controllers/transacoesController.js";
+import * as transferenciasController from "./controllers/transferenciasController.js";
 import { loginUsuario } from "./controllers/loginController.js";
 
 const routes = express.Router();
@@ -81,7 +83,7 @@ routes.put("/transferencias/:id", async (req, res) => {});
 /* 
 Endpoint para Apagar Transferencias
 */
-routes.delete("/transferencias/:id", async (req, res) => {});
+routes.delete("/transferencias/:id", transferenciasController.MostrarPorId);
 
 /* 
 Endpoint para Mostrar uma transferencia por id
@@ -97,6 +99,8 @@ routes.delete("/credito/:id", cartaoController.deletarCredito);
 routes.put("/credito/:id", cartaoController.atualizarCredito);
 
 routes.get("/credito/:id", cartaoController.buscarID);
+
+routes.put('/transacao/:id', transacoesController.alterarTransacaoPorUsuario)
 
 routes.put(
   "objetivosfinanceiros/:id",
