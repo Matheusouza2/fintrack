@@ -25,5 +25,13 @@ export const atualizarObjetivoFinanceiro = async (id, atualizacoes) => {
 };
 
 // deletar um objetivo financeiro
-export const deletarObjetivoFinanceiro = async (id) => {
+export const DeletarObjetivoFinanceiro = async (id) => {
+  try {
+    const objetivo = await db.objetivoFinanceiro.delete({
+      where: { id: parseInt(id) }
+    });
+    return objetivo;
+  } catch (error) {
+    throw new Error(`Falha na exclusão do objetivo - ${error.message}`);
+  }
 };

@@ -4,7 +4,7 @@ import * as contasController from "./controllers/contasController.js";
 import * as cartaoController from "./controllers/cartaoController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
-import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
+import * as objetivosFinanceirosController from "./controllers/objetivoController.js";
 import { loginUsuario } from "./controllers/loginController.js";
 
 const routes = express.Router();
