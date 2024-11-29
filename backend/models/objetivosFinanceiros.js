@@ -37,4 +37,9 @@ export const atualizarObjetivoFinanceiro = async (id, data) => {
 
 // deletar um objetivo financeiro
 export const deletarObjetivoFinanceiro = async (id) => {
+  try {
+    await db.objetivoFinanceiro.delete(id)
+  } catch (err) {
+    throw new Error('Erro ao deletar objetivo');
+  }
 };
