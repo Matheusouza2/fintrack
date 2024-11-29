@@ -9,7 +9,7 @@ import { BuscarCategoria, AlterarCategoria, CriarCategoria, ExcluirCategoria, Li
         if (!categoriaId) {
             return res.status(400).json({ error: 'ID da categoria é obrigatório' });
         }
-        const categoria = BuscarCategoria(categoriaId);
+        const categoria = await BuscarCategoria(categoriaId);
         if (!categoria) {
             return res.status(404).json({ error: 'Categoria não encontrada' });
         }

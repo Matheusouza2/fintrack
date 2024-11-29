@@ -10,4 +10,6 @@ export const AlterarTransferencias = (tranferenciaId, alteracoes) => {}
 
 export const ExcluirTransferencia = (tranferenciaId) => {}
 
-export const TransferenciasPorId = (tranferenciaId) => {}
+export const TransferenciasPorId = (tranferenciaId) => {
+  return db.transferencias.findFirst(tranferenciaId)
+}
