@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { listarObjetivosFinanceiros } from "../models/objetivosFinanceiros.js"
+import { 
+  listarObjetivosFinanceiros, 
+  atualizarObjetivoFinanceiro as atualizarObjetivoFinanceiroModel
+} from "../models/objetivosFinanceiros.js"
 
 const db = new PrismaClient();
 
@@ -36,26 +39,18 @@ export const lerObjetivoFinanceiro = (req, res) => {}
 // atualiza um objetivo financeiro
 export const atualizarObjetivoFinanceiro = async (req, res) => {
     try {
-      const { saldo, conta, senha } = req.body;//são os parâmetros para o usuário
+      const { id } = req.params
+      const { valorObjetivo, nome, valorAtual, dataAlvo, status } = req.body;//são os parâmetros para o usuário
  
-      if (!conta || !senha || saldo === undefined) {//aqui ele olha se os dados estão certos
-          return res.status(400).json({ mensagem: 'Dados fornecidos são insuficientes.' });
-      }
+      const updatedObjective = await atualizarObjetivoFinanceiroModel(id, {
+        valorObjetivo, 
+        nome, 
+        valorAtual, 
+        dataAlvo, 
+        status
+      });
  
-      const objetoFinanceiro = await getObjeto_Financeiro(conta);//busca o objeto finaceiro
- 
-      if (!objetoFinanceiro) {//verefica a busca
-          return res.status(404).json({ mensagem: 'Objeto financeiro não encontrado.' });
-      }
- 
-      if (objetoFinanceiro.senha !== senha) {//ver se a senha foi coloca certa.
-          return res.status(403).json({ mensagem: 'Senha incorreta.' });
-      }
-      objetoFinanceiro.saldo = saldo;
- 
-      await atualizarObjetivoFinanceiro(conta, objetoFinanceiro);
- 
-      res.status(200).json({ mensagem: 'Objeto financeiro atualizado com sucesso.', objetoFinanceiro });
+      res.status(200).json({ mensagem: 'Objeto financeiro atualizado com sucesso.', updatedObjective });
  
     } catch (erro) {//isso é para caso der erro
       console.error('Erro ao atualizar objeto financeiro:', erro);
