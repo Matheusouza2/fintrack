@@ -62,6 +62,7 @@ marginLeft: 14,
   },
   bolinha2: {
     width: 79,
+    borderRadius:50,
 height: 79,
 marginLeft: 14,
   },
