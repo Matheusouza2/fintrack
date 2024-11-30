@@ -1,10 +1,12 @@
 import express from "express";
 import * as usuarioController from "./controllers/controladorUsuarios.js";
 import * as contasController from "./controllers/contasController.js";
+import * as cartaoController from "./controllers/cartaoController.js";
 import * as subcategoriaController from "./controllers/subcategoriaController.js";
 import * as categoriasController from "./controllers/categoriasController.js";
 import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
 import { loginUsuario } from "./controllers/loginController.js";
+
 const routes = express.Router();
 
 // Endpoints referentes ao controller de contas
@@ -26,7 +28,7 @@ routes.post("/login", loginUsuario);
 
 routes.post("/subcategoria", subcategoriaController.criarSubcategoria);
 
-routes.get("/subcategoria/:id", subcategoriaController.verSubcategoria);
+routes.get("/subcategoria/:id", subcategoriaController.lerSubcategoria);
 
 routes.post("/subcategoria", subcategoriaController.atualizarSubcategoria);
 

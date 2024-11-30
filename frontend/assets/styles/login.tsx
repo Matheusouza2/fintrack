@@ -47,6 +47,17 @@ export const styles = StyleSheet.create({
         borderColor: "#56aaff",
     },
 
+    // estilo específico para o campo CPF
+    cpfInput: {
+        width: "80%",
+        marginBottom: 50,
+        color: "#333",
+        fontSize: 22,
+        borderRadius: 15,
+        padding: 10,
+        borderWidth: 2,
+        borderColor: "#56aaff",
+    },
 
     // estilo do botão de login
     button: {
