@@ -22,6 +22,8 @@ routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
 
+routes.get("/contas/lista", contasController.listarContas);
+
 routes.post("/login", loginUsuario);
 
 // criação de rotas da subcategoria
@@ -49,10 +51,12 @@ routes.get("/usuarios/:id", usuarioController.obterUsuarioPorId);
 
 routes.post("/usuarios/", usuarioController.cadastrarUsuario);
 
+routes.put("/usuarios/:id", usuarioController.atualizarUsuario);
+
 /*
  Rotas para transferencia
 */
-// Endpoints objetivos financeiros
+// Endpoints objetivos financeir""os
 routes.get(
   "/objetivosfinanceiros",
   objetivosFinanceirosController.lerObjetivoFinanceiro

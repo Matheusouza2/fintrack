@@ -57,7 +57,7 @@ export async function cadastrarUsuario(request, response) {
  **************************************************/
 export async function atualizarUsuario(req, res) {
   const { id } = req.params;
-  const { nome, email, senha } = req.body;
+  const { nome, email, cpf } = req.body;
 
   try {
     const usuario = await prisma.usuario.update({
@@ -65,7 +65,7 @@ export async function atualizarUsuario(req, res) {
       data: {
         nome,
         email,
-        senha,
+        cpf,
       },
     });
 

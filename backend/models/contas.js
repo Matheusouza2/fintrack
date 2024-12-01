@@ -81,3 +81,13 @@ export const listarContasPorUsuarioId = async (usuarioId) => {
     throw new Error("Erro interno ao buscar contas. Tente novamente mais tarde.");
   }
 };
+
+
+export const ListarContas = async() => {
+  try {
+    const contas = await db.Conta.findMany();
+    return contas;  
+} catch (erro) {
+    throw new Error('Erro ao listar Contas');  
+}
+} 
