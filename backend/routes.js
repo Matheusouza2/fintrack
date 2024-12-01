@@ -22,6 +22,8 @@ routes.delete("/contas/:id", contasController.excluirContas);
 
 routes.get("/contas/:id", contasController.mostrarContas);
 
+routes.get("/contas/lista", contasController.listarContas);
+
 routes.post("/login", loginUsuario);
 
 // criação de rotas da subcategoria

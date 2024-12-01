@@ -3,7 +3,7 @@ alterar, listar, excluir e mostrar uma única conta com base no id      */
 
 import { encontrarBanco } from "../models/bancos.js";
 import { BuscarCategoria } from "../models/categorias.js";
-import { CriarConta, ListarContaPorId, AtualizarConta, DeletarContas, listarContasPorUsuarioId as ListarContasPorUsuarioId } from "../models/contas.js";
+import { CriarConta, ListarContas ListarContaPorId, AtualizarConta, DeletarContas, listarContasPorUsuarioId as ListarContasPorUsuarioId } from "../models/contas.js";
 
 export async function cadastrarConta(req, res) {
   // armazenar os dados do body nas respectivas variáveis
@@ -99,7 +99,20 @@ export async function alterarContas(req, res) {
   }
 }
 
-export function listarContas(req, res) {}
+export async function listarContas(req, res) {
+  try {
+    const contas = await ListarContas();
+
+    if (contas.length === 0) {
+      return res.status(404).json({ message: 'Nenhuma conta encontrada' });
+    }
+  
+    return res.status(200).json({ contas });
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro ao listar contas', error });
+  }
+
+}
 
 export async function excluirContas(req, res) {
   const id = req.params.id;
@@ -122,9 +135,7 @@ export async function mostrarContas(req, res) {
     const conta = await ListarContaPorId(idConta);
     res.status(201).json(conta);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: `Erro ao consultar conta${error.message}` });
+    res.status(500).json({ message: `Erro ao consultar conta${error.message}` });
   }
 }
 
