@@ -20,24 +20,30 @@ const CriarCategoria: React.FC = () => {
   };
 
   const handleSalvar = async () => {
-      try {
-          const response = await axios.post('http://localhost:8081/categorias', {
-            descricao,
-            tipo,
-            cor
-          });
+    if (!descricao || !tipo || !cor) {
+      Alert.alert("Erro", "Todos os campos são obrigatórios.");
+      return;
+    }
 
-          if (response.status === 200) {
-            Alert.alert("Sucesso", "Categoria criada");
-            // Trate a lógica após o login aqui (ex: navegação)
-          } else {
-            Alert.alert("Erro", "Categoria inválida");
-          }
-      } catch (error) {
-        Alert.alert("Erro", "Erro ao criar categoria ");
+    try {
+      const response = await axios.post('http://localhost:8081/categorias', {
+        descricao,
+        tipo,
+        cor
+      });
+
+      if (response.status === 200) {
+        Alert.alert("Sucesso", "Categoria criada");
+        setDescricao('');
+        setTipo('');
+        setCor('#ffffff');
+      } else {
+        Alert.alert("Erro", "Erro ao criar categoria.");
       }
+    } catch (error) {
+      Alert.alert("Erro", "Erro ao criar categoria.");
+    }
   };
-
 
   return (
     <View style={styles.container}>
@@ -47,7 +53,7 @@ const CriarCategoria: React.FC = () => {
         style={styles.input}
         placeholder="Descrição"
         value={descricao}
-        // onChangeText={setDescricao}
+        onChangeText={setDescricao}
       />
 
       <TextInput
@@ -57,13 +63,11 @@ const CriarCategoria: React.FC = () => {
         onChangeText={setTipo}
       />
 
-      {/* Seletor de Cor */}
       <TouchableOpacity style={styles.colorContainer} onPress={abrirPaletaDeCores}>
         <Text style={styles.label}>Cor</Text>
         <View style={[styles.colorCircle, { backgroundColor: cor }]} />
       </TouchableOpacity>
 
-      {/* Paleta de cores */}
       <Modal
         visible={modalVisible}
         transparent={true}
@@ -73,7 +77,7 @@ const CriarCategoria: React.FC = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <ColorPicker
-              onColorSelected={selecionarCor}
+              onColorSelected={(novaCor: string) => selecionarCor(novaCor)}
               style={styles.colorPicker}
             />
             <TouchableOpacity
@@ -86,12 +90,6 @@ const CriarCategoria: React.FC = () => {
         </View>
       </Modal>
 
-      {/* Ícone não implementado */}
-      <TouchableOpacity style={styles.iconContainer}>
-        <Text style={styles.label}>Ícone</Text>
-        <View style={styles.iconCircle} />
-      </TouchableOpacity>
-      
       <TouchableOpacity style={styles.botaoEnviar} onPress={handleSalvar}>
         <Text style={styles.textoBotaoEnviar}>Salvar</Text>
       </TouchableOpacity>
