@@ -6,8 +6,13 @@ import * as subcategoriaController from "./controllers/subcategoriaController.js
 import * as categoriasController from "./controllers/categoriasController.js";
 import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
 import { loginUsuario } from "./controllers/loginController.js";
-
+import * as transferenciasController from "./controllers/transferenciasController.js";
 const routes = express.Router();
+
+//Endpoints das transferencias 
+routes.push("/transferencias", transferenciasController.CriarTransferencia);
+routes.get("/transferencias", transferenciasController.ListarTransferencia);
+routes.put("/transferencias:id", transferenciasController.AlterarTransferencia);
 
 // Endpoints referentes ao controller de contas
 routes.post("/contas", contasController.cadastrarConta);
