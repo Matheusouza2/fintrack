@@ -1,59 +1,110 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#fff',
     padding: 20,
   },
-  header: {
-    fontSize: 24,
-    color: '#005e9c',
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
+  logoSubContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+
+  },
+  logoCircle: {
+    width: 90,
+    height: 90,
+    borderRadius: 50,
+    backgroundColor: '#053d6e',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 40,
+    height: 50,
+  },
+  logoTextContainer: {
+    marginLeft: 10,
+    justifyContent: 'center',
+  },
+  logoFin: {
+    color: '#053d6e',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  logoTrack: {
+    color: '#ff7d01',
+    fontSize: 24,
+
+  },
+  loginButton: {
+    alignSelf: 'flex-start',
+  },
+  loginButtonText: {
+    color: '#007BFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  header: {
+    fontSize: 32,
+    color: '#6D6D6D',
+  },
+  headerSecond: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'black',
+    marginBottom: 30,
+  },
   input: {
-    width: '100%',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#005e9c',
-    borderRadius: 20,
+    color: '#5FB7FF',
+    height: 50,
+    borderBottomColor: '#0188ea',
+    borderBottomWidth: 2,
+    paddingHorizontal: 15,
     marginBottom: 15,
+    fontSize: 16,
   },
   sugestaoEmail: {
-    color: '#005e9c',
-    fontSize: 12,
+    color: '#888',
     marginBottom: 10,
   },
   senhaContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
+    borderColor: '#ccc',
+
+    marginBottom: 15,
   },
   inputSenha: {
+    color: '#5FB7FF',
+    height: 50,
+    borderBottomColor: '#0188ea',
+    borderBottomWidth: 2,
+    paddingHorizontal: 15,
     flex: 1,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#005e9c',
-    borderRadius: 20,
   },
   senhaToggle: {
-    color: '#005e9c',
-    marginLeft: 10,
+    paddingHorizontal: 15,
+    color: '#007BFF',
+    fontWeight: 'bold',
   },
   button: {
-    backgroundColor: '#00c7b6',
-    padding: 15,
-    borderRadius: 20,
-    marginTop: 20,
-    width: '100%',
+    height: 60,
+    backgroundColor: '#053d6e',
+    borderRadius: 60,
+    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 16,
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
-
-export default styles;

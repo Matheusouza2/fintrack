@@ -6,7 +6,7 @@ import * as subcategoriaController from "./controllers/subcategoriaController.js
 import * as categoriasController from "./controllers/categoriasController.js";
 import * as objetivosFinanceirosController from "./controllers/objetivosFinanceirosController.js";
 import { loginUsuario } from "./controllers/loginController.js";
-
+import * as transferenciasController from "./controllers/transferenciasController.js";
 const routes = express.Router();
 
 // Endpoints referentes ao controller de contas
@@ -86,7 +86,9 @@ routes.delete("/transferencias/:id", async (req, res) => {});
 /* 
 Endpoint para Mostrar uma transferencia por id
 */
-routes.get("/transferencias/:id", async (req, res) => {});
+//rotas para transferencias
+routes.get("/transferencias/:id",transferenciasController.MostrarPorId);
+routes.delete("/transferencias:id",transferenciasController.DeletarTransferencia);
 //Endpoints referentes ao controller de cartão de crédito
 routes.post("/credito", cartaoController.criarCredito);
 
