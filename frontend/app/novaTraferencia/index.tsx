@@ -48,14 +48,6 @@ const novaTransferencia = () => {
     return regex.test(data);
   };
 
-  const handleDataChange = (data) => {
-    setData(data);
-    if (!validarData(data)) {
-      setErrorMessage('Por favor, insira uma data válida no formato DD/MM/YYYY.');
-    } else {
-      setErrorMessage('');
-    }
-  };
 
   const salvar = () => {
     let dados = {
@@ -106,21 +98,12 @@ const novaTransferencia = () => {
       />
 
       <TextInput
-        style={styles.input}
-        placeholder="Descrição"
-        placeholderTextColor="#A9A9A9"
-        value={descricao}
-        onChangeText={setDescricao}
-      />
-
-      <TextInput
         style={styles.campoEntrada}
         placeholder="Descrição"
         placeholderTextColor="#A9A9A9"
         value={descricao}
         onChangeText={setDescricao}
       />
-      {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
       <TouchableOpacity style={{width:"98%",justifyContent:"center", alignItems:"center"}} onPress={showDatePicker}>
         <TextInput
@@ -170,7 +153,6 @@ const novaTransferencia = () => {
         onChangeText={setContaDestino}
       />
 
-      <Button title="Salvar" onPress={() => salvar()} />
       <View style={styles.containerBotao}>
         <TouchableOpacity style={styles.botaoSalvar}>
             <Text style={styles.textoBotao}>Salvar</Text>

@@ -1,4 +1,5 @@
-import { listarObjetivosFinanceiros } from "../models/objetivosFinanceiros"
+// import { DeletarObjetivoFinanceiro } from "../models/objetivosFinanceiros"
+import { PrismaClient } from "@prisma/client";
 
 const db = new PrismaClient();
 
@@ -25,8 +26,6 @@ export async function listarObjetivos(req, res) {
         res.status(500).json({ error: 'Erro ao listar objetivos financeiros' });  // Envia a resposta de erro
     }
 }
-
-
 
 
 // ler um objetivo financeiro
@@ -63,4 +62,24 @@ export const atualizarObjetivoFinanceiro = async (req, res) => {
  };
  
 // apaga um objetivo financeiro
-export const apagarObjetivoFinanceiro = (req, res) => {}
+export const apagarObjetivoFinanceiro = async (req, res) => {
+  const id = req.params.id;
+
+  if (!id)
+    res.status(400).json({ message: "O ID do objetivo deve ser informado." });
+
+  try {
+    try {
+      const objetivo = await db.objetivoFinanceiro.delete({
+        where: { id: parseInt(id) }
+      });
+      
+      res.status(200).json(objetivo);
+    } catch (error) {
+      throw new Error(`Falha na exclusão do objetivo - ${error.message}`);
+    }
+    
+  } catch (error) {
+    res.status(500).json({ message: `Erro: ${error.message}` });
+  }
+}
