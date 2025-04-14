@@ -20,9 +20,26 @@ export const listarObjetivosFinanceiros = async () => {
 }
 
 // atualizar um objetivo financeiro
-export const atualizarObjetivoFinanceiro = async (id, atualizacoes) => {
+export const atualizarObjetivoFinanceiroModel = async (id, atualizacoes) => {
+    try {
 
+        if (!id) {
+            throw new Error('ID do objetivo financeiro não informado.');
+        }
+
+        const objetivoAtualizado = await db.objetivoFinanceiro.update({
+            where: { id: id },
+            data: atualizacoes,
+        });
+
+        return objetivoAtualizado;
+
+    } catch (erro) {
+        console.error('Erro ao atualizar objetivo financeiro:', erro);
+        throw new Error('Erro ao atualizar objetivo financeiro');
+    }
 };
+
 
 // deletar um objetivo financeiro
 export const deletarObjetivoFinanceiro = async (id) => {

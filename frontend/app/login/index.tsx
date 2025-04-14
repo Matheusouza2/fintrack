@@ -11,8 +11,8 @@ export default function App() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:8081/login', {
-                email: cpf.replace(/\D/g, ''), // Envia o CPF sem máscara para o backend
+            const response = await axios.post('http://localhost:9090/api/login', {
+                cpf: cpf.replace(/\D/g, ''), // Envia o CPF sem máscara para o backend
                 senha: senha
             });
 
@@ -27,7 +27,7 @@ export default function App() {
     };
 
     // Função para formatar o CPF com a máscara
-    const handleCpfChange = (text) => {
+    const handleCpfChange = (text: string) => {
         const onlyNumbers = text.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
         let formattedCpf = onlyNumbers;
 

@@ -6,9 +6,9 @@ export function hashSenha(senha) {
     return crypto.createHash('sha256').update(senha).digest('hex');
 }
 
-export async function validarCredenciais(email, senha) {
+export async function validarCredenciais(cpf, senha) {
     const usuario = await prisma.usuario.findUnique({
-        where: { email: email },
+        where: { cpf: cpf },
     });
 
     if (usuario && usuario.senha === hashSenha(senha)) {

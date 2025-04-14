@@ -1,28 +1,26 @@
-import DespesasPorCategoria from "../components/despesasPorCategoria";
-import { View } from "react-native";
-import { Link } from "expo-router";
-import FinancialIconsBar from "../components/menuDenavegacao"
+import React, {useEffect, useState} from "react";
+import  Splash_screen  from './splashScreen';
+import  LoginScreen from './login/index';
 
-export default function Index() {
-  const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80];
+//o estado da tela de splash começa como true ou seja ela é ativada
+const Estado = () => {
+    const [exibirSplash, atualiza] = useState(true);
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#EDEDEB",
-        paddingHorizontal: 10
-      }}
-    >
-      {/* <DespesasPorCategoria /> */}
-      {/* <Link href="/splashScreen">Splash</Link> */}
-      {/* <Link href="/novaConta">Nova Conta</Link> */}
-      <Link href="/novaTraferencia">Nova Transferencia</Link>
-      {/* <FinancialIconsBar/> */}
+    //aqui tipo é um relogio conta o tempo de 1,5 sec para mudar o estado da tela
+    useEffect(() => {
+        const tempoSplash = setTimeout(() => {
+            atualiza(false);//aqui tipo ele muda para tela de login
+        }, 1500);//tá 1500 pq é em ms
 
-    </View>
-    
-  );
+        return () => clearTimeout(tempoSplash);//aqui ele zera o reloginho 
+    }, []);
+
+    //aqui tipo ele muda a tela com base no estado
+    if(exibirSplash){
+        return <Splash_screen/>;
+    }else{
+        return <LoginScreen/>;
+    }
 }
+
+export  default Estado; //exporta a tela de splash
